@@ -1,0 +1,14 @@
+{
+   "projects":{
+      "quotes":{
+         "schemaPath":"schema.graphql",
+         "extensions":{
+            "endpoints":{
+               "local": "http://graphql.local/graphql",
+               "default":"http://graphql.juffalow.com/graphql",
+               "prod":"http://graphql.juffalow.com/graphql"
+            }
+         }
+      }
+   }
+}

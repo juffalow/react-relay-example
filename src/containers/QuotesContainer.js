@@ -4,7 +4,7 @@ import graphql from 'babel-plugin-relay/macro';
 import environment from 'environment';
 
 const QuotesList = createPaginationContainer(
-  props => props.children(props.agent, props.relay, props.error),
+  (props) => (props.render(props.query, props.relay)),
   graphql`
   fragment QuotesContainer_query on Query {
     quotes (
@@ -63,16 +63,16 @@ const QuotesList = createPaginationContainer(
     `
   }
 );
- 
-export default ({ children }) => (
+
+export default ({ render }) => (
   <QueryRenderer
     environment={environment}
     query={graphql`
-      query QuotesContainerQuery($first: Int!, $after: String) {
+      query QuotesContainerQuery($first: Int!, $after: ID) {
         ...QuotesContainer_query
       }
     `}
-    variables={{ first: 10, after: null }}
+    variables={{ first: 9, after: null }}
     render={({error, props}) => {
 
       if (!props) {
@@ -80,7 +80,7 @@ export default ({ children }) => (
       }
 
       return (
-        <QuotesList children={children} />
+        <QuotesList query={props} render={render} />
       );
     }}
   />

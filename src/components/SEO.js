@@ -6,7 +6,7 @@ const SEO = ({ title, description, children }) => (
   <>
     <Helmet>
       <meta charSet="utf-8" />
-      <title>{title} | Quotes</title>
+      <title>{title} | juffalow.com</title>
       <meta name="description" content={description} />
     </Helmet>
     {children}

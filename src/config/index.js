@@ -1,9 +1,9 @@
 const local = {
-  graphql: 'http://graphql.muvity.local/graphql',
+  graphql: 'http://graphql.local/graphql',
 };
 
 const prod = {
-  graphql: 'https://graphql.muvity.sk/graphql',
+  graphql: 'https://graphql.juffalow.com/graphql',
 };
 
 const config = process.env.REACT_APP_ENV === 'local'
@@ -13,4 +13,3 @@ const config = process.env.REACT_APP_ENV === 'local'
   export default {
     ...config
   };
-  
