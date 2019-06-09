@@ -36,7 +36,6 @@ export default class AuthorsFilter extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.state);
     this.props.refetch(this.state);
   }
 
