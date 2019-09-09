@@ -17,7 +17,7 @@ const Home = ({ quotes, hasMore, loadMore }) => (
       <Row>
         <Col lg={12} md={12} sm={12} xs={12}>
           <h1>React and Relay example</h1>
-          <p>The whole page (source code on <a href="https://github.com/juffalow/react-relay-example">GitHub</a>) is written in <a href="https://reactjs.org/" target="_blank">React</a> and <a href="https://react-bootstrap.netlify.com/">React Bootstrap</a> for UI. On the backend side, there is a GraphQL server (<a href="https://github.com/juffalow/slim-graphql-eloquent-example" target="_blank">PHP</a> / <a href="https://github.com/juffalow/express-graphql-example" target="_blank">Node</a>) and the connection is handled by <a href="https://facebook.github.io/relay/" target="_blank">Relay</a>.</p>
+          <p>The whole page (source code on <a href="https://github.com/juffalow/react-relay-example">GitHub</a>) is written in <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a> and <a href="https://react-bootstrap.netlify.com/">React Bootstrap</a> for UI. On the backend side, there is a GraphQL server (<a href="https://github.com/juffalow/slim-graphql-eloquent-example" target="_blank" rel="noopener noreferrer">PHP</a> / <a href="https://github.com/juffalow/express-graphql-example" target="_blank" rel="noopener noreferrer">Node</a>) and the connection is handled by <a href="https://facebook.github.io/relay/" target="_blank" rel="noopener noreferrer">Relay</a>.</p>
         </Col>
         <Col lg={6} md={6} sm={12} xs={12}>
           <h4>Relay Pagination Container</h4>
