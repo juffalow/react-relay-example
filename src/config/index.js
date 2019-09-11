@@ -1,5 +1,5 @@
 const local = {
-  graphql: 'http://graphql.local/graphql',
+  graphql: 'https://graphql.juffalow.com/graphql',
 };
 
 const prod = {
