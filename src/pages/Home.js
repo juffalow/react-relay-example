@@ -5,41 +5,21 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import SEO from 'components/SEO';
 import Quote from 'components/Quote';
-import QuotesContainer from 'containers/QuotesContainer';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import PaginationContainerCode from './home/PaginationContainerCode';
-import HomeCode from './home/HomeCode';
+import { QueryRenderer, createPaginationContainer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+import environment from 'environment';
 
-const Home = ({ quotes, hasMore, loadMore }) => (
+const Home = ({ quotes, relay }) => (
   <SEO title="Quotes" description="List of Quotes with Authors implemented in React and Relay.">
     <Container style={{ marginTop: 20, marginBottom: 20 }}>
       <Row>
-        <Col lg={12} md={12} sm={12} xs={12}>
-          <h1>React and Relay example</h1>
-          <p>The whole page (source code on <a href="https://github.com/juffalow/react-relay-example">GitHub</a>) is written in <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a> and <a href="https://react-bootstrap.netlify.com/">React Bootstrap</a> for UI. On the backend side, there is a GraphQL server (<a href="https://github.com/juffalow/slim-graphql-eloquent-example" target="_blank" rel="noopener noreferrer">PHP</a> / <a href="https://github.com/juffalow/express-graphql-example" target="_blank" rel="noopener noreferrer">Node</a>) and the connection is handled by <a href="https://relay.dev/en/" target="_blank" rel="noopener noreferrer">Relay</a>.</p>
-        </Col>
-        <Col lg={6} md={6} sm={12} xs={12}>
-          <h4>Relay Pagination Container</h4>
-          <SyntaxHighlighter language="javascript" showLineNumbers={true} style={vs}>
-            {PaginationContainerCode}
-          </SyntaxHighlighter>
-        </Col>
-        <Col lg={6} md={6} sm={12} xs={12}>
-          <h4>List of Quotes</h4>
-          <SyntaxHighlighter language="jsx" showLineNumbers={true} style={vs}>
-            {HomeCode}
-          </SyntaxHighlighter>
-        </Col>
-      </Row>
-      <Row>
         <Col>
-          <h2>Quotes</h2>
+          <h1>Quotes</h1>
         </Col>
       </Row>
       <Row>
         {
-          quotes.map(quote => (
+          quotes.quotes.edges.map(edge => edge.node).map(quote => (
             <Col key={quote.id} md={4} style={{ marginBottom: 20 }}>
               <Quote quote={quote.quote} author={`${quote.author.firstName} ${quote.author.lastName}`} />
             </Col>
@@ -49,8 +29,8 @@ const Home = ({ quotes, hasMore, loadMore }) => (
       <Row>
         <Col className="text-center">
           {
-            hasMore ? (
-              <Button onClick={loadMore}>Load more</Button>
+            quotes.quotes.pageInfo.hasNextPage ? (
+              <Button onClick={() => relay.loadMore(9, null)}>Load more</Button>
             ) : null
           }
         </Col>
@@ -59,30 +39,86 @@ const Home = ({ quotes, hasMore, loadMore }) => (
   </SEO>
 );
 
-export default () => (
-  <QuotesContainer render={(props, relay) => (
-    <Home quotes={props.quotes.edges.map(edge => edge.node)}
-      refetch={(params) => {
-        relay.refetchConnection(
-          9,
-          error => {
-            console.log(error);
-          },
-          params,
-        );
-      }}
-      hasMore={relay.hasMore()}
-      loadMore={() => {
-        if (!relay.hasMore() || relay.isLoading()) {
-          return;
+const HomeContainer = createPaginationContainer(
+  Home,
+  {
+    quotes: graphql`
+      fragment Home_quotes on Query {
+        quotes (
+          first: $first
+          after: $after
+        ) @connection(key: "Home_quotes") {
+          totalCount
+          edges  {
+            node {
+              ... on Quote {
+                id
+                _id
+                quote
+                author {
+                  id
+                  _id
+                  firstName
+                  lastName
+                }
+              }
+            }
+          }
+          pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
+          }
         }
+      }`
+  },
+  {
+    direction: 'forward',
+    getConnectionFromProps(props) {
+      return props.quotes.quotes;
+    },
+    getFragmentVariables(prevVars, totalCount) {
+      return {
+        ...prevVars,
+        count: totalCount,
+      };
+    },
+    getVariables(props, {count, cursor}, fragmentVariables) {
+      return {
+        first: count,
+        after: cursor,
+      };
+    },
+    query: graphql`
+      query HomeContainerPaginationQuery(
+        $first: Int!
+        $after: ID
+      ) {
+        ...Home_quotes
+      }
+    `
+  }
+);
 
-        relay.loadMore(
-          9,
-          error => {
-            console.log(error);
-          },
-        );
-      }} />
-  )} />
+export default () => (
+  <QueryRenderer
+    environment={environment}
+    query={graphql`
+      query HomeContainerQuery($first: Int!, $after: ID) {
+        ...Home_quotes
+      }
+    `}
+    variables={{ first: 9 }}
+    render={({error, props}) => {
+
+      if (!props) {
+        return ( <p>Loading...</p> );
+      }
+
+      return (
+        <HomeContainer quotes={props} />
+      );
+    }}
+  />
 );

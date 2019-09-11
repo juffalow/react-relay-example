@@ -99,7 +99,7 @@ const AuthorsContainer = createPaginationContainer(
   }
 );
 
-export default ({ render }) => (
+export default () => (
   <QueryRenderer
     environment={environment}
     query={graphql`
