@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Menu from 'components/Menu';
 import ForkMe from 'components/ForkMe';
 import Footer from 'components/Footer';
-import Home from 'pages/Home';
+// import Home from 'pages/Home'; <Route path="/" exact component={Home} />
 import Authors from 'pages/Authors';
 
 const App = () => (
@@ -12,7 +12,7 @@ const App = () => (
       <Menu />
       <ForkMe />
 
-      <Route path="/" exact component={Home} />
+      
       <Route path="/authors" exact component={Authors} />
 
       <Footer />
