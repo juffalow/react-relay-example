@@ -10,7 +10,7 @@ import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import environment from 'environment';
 
-const Authors = ({ authors, hasMore, loadMore, refetch, ...rest }) => (
+const Authors = ({ authors, relay }) => (
   <SEO title="Authors" description="List of Authors implemented in React and Relay.">
     <Container style={{ marginTop: 20, marginBottom: 20 }}>
       <Row>
@@ -20,7 +20,7 @@ const Authors = ({ authors, hasMore, loadMore, refetch, ...rest }) => (
       </Row>
       <Row style={{ marginTop: 20, marginBottom: 20 }}>
         <Col>
-          <AuthorsFilter refetch={refetch} />
+          <AuthorsFilter refetch={relay.refetchConnection} />
         </Col>
       </Row>
       <Row>
@@ -31,8 +31,8 @@ const Authors = ({ authors, hasMore, loadMore, refetch, ...rest }) => (
       <Row>
         <Col className="text-center">
           {
-            hasMore ? (
-              <Button onClick={loadMore}>Load more</Button>
+            authors.authors.pageInfo.hasNextPage ? (
+              <Button onClick={() => relay.loadMore(9, null)}>Load more</Button>
             ) : null
           }
         </Col>
@@ -71,7 +71,7 @@ const AuthorsContainer = createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps(props) {
-      return props.authors;
+      return props.authors.authors;
     },
     getFragmentVariables(prevVars, totalCount) {
       return {

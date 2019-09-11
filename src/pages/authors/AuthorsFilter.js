@@ -33,11 +33,25 @@ export default class AuthorsFilter extends React.Component {
     });
   }
 
+  handleDirectionChange = (event) => {
+    const value = event.target.value;
+
+    this.setState(state => {
+      const orderBy = state.orderBy.map(orderBy => ({
+        ...orderBy,
+        direction: value,
+      }));
+
+      return {
+        orderBy
+      };
+    });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.state);
-    this.props.refetch(this.state);
+    this.props.refetch(9, null, this.state);
   }
 
   render() {
@@ -63,13 +77,13 @@ export default class AuthorsFilter extends React.Component {
         </Form.Group>
         <Form.Group controlId="authorsOrderBy">
           <Form.Label>Order by</Form.Label>
-          <Form.Control as="select" onChange={this.handleOrderByChange}>
+          <Form.Control as="select" name="field" onChange={this.handleOrderByChange}>
             <option value="ID">ID</option>
             <option value="FIRST_NAME">First name</option>
             <option value="LAST_NAME">Last name</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="authorsOrderDirection">
+        <Form.Group controlId="authorsOrderDirection" onChange={this.handleDirectionChange}>
           <Form.Control as="select" name="direction">
             <option value="ASC">ASC</option>
             <option value="DESC">DESC</option>
