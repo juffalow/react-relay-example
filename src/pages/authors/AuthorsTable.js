@@ -1,7 +1,27 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
+import { createFragmentContainer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
 
-const AuthorsTable = ({ authors }) => (
+const AuthorRow = ({ author }) => (
+  <>
+    <td>{author._id}</td>
+    <td>{author.firstName}</td>
+    <td>{author.lastName}</td>
+  </>
+);
+
+const AuthorRowFragmentContainer = createFragmentContainer(AuthorRow, {
+  author: graphql`
+     fragment AuthorsTable_author on Author {
+        _id
+        firstName
+        lastName
+     }
+  `
+});
+
+const AuthorsTable = ({ authors, ...rest }) => (
   <Table striped bordered hover>
     <thead>
       <tr>
@@ -13,10 +33,8 @@ const AuthorsTable = ({ authors }) => (
     <tbody>
       {
         authors.map(author => (
-          <tr key={author._id}>
-            <td>{author._id}</td>
-            <td>{author.firstName}</td>
-            <td>{author.lastName}</td>
+          <tr key={author.id}>
+            <AuthorRowFragmentContainer author={author} />
           </tr>
         ))
       }
@@ -24,4 +42,13 @@ const AuthorsTable = ({ authors }) => (
   </Table>
 );
 
-export default React.memo(AuthorsTable);
+const AuthorsTableFragmentContainer = createFragmentContainer(AuthorsTable, {
+  authors: graphql`
+    fragment AuthorsTable_authors on Author @relay(plural: true) {
+      id
+      ...AuthorsTable_author
+    }
+  `
+});
+
+export default AuthorsTableFragmentContainer;

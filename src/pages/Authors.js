@@ -4,11 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import SEO from 'components/SEO';
-import AuthorsContainer from 'containers/AuthorsContainer';
 import AuthorsFilter from './authors/AuthorsFilter';
 import AuthorsTable from './authors/AuthorsTable';
+import { QueryRenderer, createPaginationContainer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+import environment from 'environment';
 
-const Authors = ({ authors, hasMore, loadMore, refetch }) => (
+const Authors = ({ authors, hasMore, loadMore, refetch, ...rest }) => (
   <SEO title="Authors" description="List of Authors implemented in React and Relay.">
     <Container style={{ marginTop: 20, marginBottom: 20 }}>
       <Row>
@@ -23,7 +25,7 @@ const Authors = ({ authors, hasMore, loadMore, refetch }) => (
       </Row>
       <Row>
         <Col>
-          <AuthorsTable authors={authors} />
+          <AuthorsTable authors={authors.authors.edges.map(edge => edge.node)} />
         </Col>
       </Row>
       <Row>
@@ -39,30 +41,82 @@ const Authors = ({ authors, hasMore, loadMore, refetch }) => (
   </SEO>
 );
 
-export default () => (
-  <AuthorsContainer render={(props, relay) => (
-    <Authors authors={props.authors.edges.map(edge => edge.node)}
-      refetch={(params) => {
-        relay.refetchConnection(
-          9,
-          error => {
-            console.log(error);
-          },
-          params,
-        );
-      }}
-      hasMore={relay.hasMore()}
-      loadMore={() => {
-        if (!relay.hasMore() || relay.isLoading()) {
-          return;
+const AuthorsContainer = createPaginationContainer(
+  Authors,
+  {
+    authors: graphql`
+      fragment Authors_authors on Query {
+        authors (
+          first: $first
+          after: $after
+          firstName: $firstName
+          lastName: $lastName
+          orderBy: $orderBy
+        ) @connection(key: "Authors_authors") {
+          totalCount
+          edges  {
+            node {
+              ...AuthorsTable_authors
+            }
+          }
+          pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
+          }
         }
+      }`
+  },
+  {
+    direction: 'forward',
+    getConnectionFromProps(props) {
+      return props.authors;
+    },
+    getFragmentVariables(prevVars, totalCount) {
+      return {
+        ...prevVars,
+        count: totalCount,
+      };
+    },
+    getVariables(props, {count, cursor}, fragmentVariables) {
+      return {
+        first: count,
+        after: cursor,
+      };
+    },
+    query: graphql`
+      query AuthorsContainerPaginationQuery(
+        $first: Int!
+        $after: ID
+        $firstName: String
+        $lastName: String
+        $orderBy: [AuthorOrder]
+      ) {
+        ...Authors_authors
+      }
+    `
+  }
+);
 
-        relay.loadMore(
-          9,
-          error => {
-            console.log(error);
-          },
-        );
-      }} />
-  )} />
+export default ({ render }) => (
+  <QueryRenderer
+    environment={environment}
+    query={graphql`
+      query AuthorsContainerQuery($first: Int!, $after: ID, $firstName: String, $lastName: String, $orderBy: [AuthorOrder]) {
+        ...Authors_authors
+      }
+    `}
+    variables={{ first: 9 }}
+    render={({error, props}) => {
+
+      if (!props) {
+        return ( <p>Loading...</p> );
+      }
+
+      return (
+        <AuthorsContainer authors={props} />
+      );
+    }}
+  />
 );
