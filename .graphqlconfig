@@ -4,7 +4,7 @@
          "schemaPath":"schema.graphql",
          "extensions":{
             "endpoints":{
-               "local": "http://graphql.local/graphql",
+               "local": "http://localhost:3013/graphql",
                "default":"http://graphql.juffalow.com/graphql",
                "prod":"http://graphql.juffalow.com/graphql"
             }

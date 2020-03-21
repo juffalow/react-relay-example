@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-const SEO = ({ title, description, children }) => (
+interface Props {
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}
+
+const SEO = ({ title, description, children }: Props) => (
   <>
     <Helmet>
       <meta charSet="utf-8" />
@@ -12,10 +17,5 @@ const SEO = ({ title, description, children }) => (
     {children}
   </>
 );
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-};
 
 export default SEO;

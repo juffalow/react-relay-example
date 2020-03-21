@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const Quote = ({ quote, author }) => (
+const Quote = ({ quote, author }: any) => (
   <Card>
     <Card.Body>
       <blockquote className="blockquote mb-0">
