@@ -36,6 +36,11 @@ yarn run relay
 yarn start
 ```
 
+## Old version
+
+Working version of React + Relay application written in JavaScript:
+* [1.0.0](https://github.com/juffalow/react-relay-example/tree/1.0.0)
+
 ## License
 
 [MIT license](./LICENSE)
