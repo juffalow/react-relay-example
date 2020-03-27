@@ -14,11 +14,7 @@ const Quotes: React.FC = () => {
             <h1>Quotes</h1>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <QuotesContainer />
-          </Col>
-        </Row>
+        <QuotesContainer />
       </Container>
     </SEO>
   );

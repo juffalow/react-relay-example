@@ -2,10 +2,12 @@ import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import environment from 'environment';
-import QuotesTable from './QuotesTable';
+import QuotesList from './QuotesList';
 import Filter from './Filter';
 import { Quote } from '../../types/Quote';
 
@@ -39,14 +41,20 @@ const refetch = (relay: any, values: any) => {
 
 const Quotes: React.FC<Props> = (props: Props) => (
   <>
-    <div style={{ marginTop: 20, marginBottom: 20 }}>
-      <Filter onUpdate={(values: any) => refetch(props.relay, values)} />
-    </div>
-    <QuotesTable quotes={props.quotes.quotes.edges.map(edge => edge.node)} />
-    {
-      props.relay.hasMore() &&
-      <Button onClick={() => props.relay.loadMore(9, null)}>Load more</Button>
-    }
+    <Row className="mt-4 mb-4">
+      <Col>
+        <Filter onUpdate={(values: any) => refetch(props.relay, values)} />
+      </Col>
+    </Row>
+    <QuotesList quotes={props.quotes.quotes.edges.map(edge => edge.node)} />
+    <Row className="mt-4">
+      <Col>
+        {
+          props.relay.hasMore() &&
+          <Button onClick={() => props.relay.loadMore(9, null)}>Load more</Button>
+        }
+      </Col>
+    </Row>
   </>
 );
 
@@ -62,7 +70,7 @@ const QuotesContainer = createPaginationContainer(
           totalCount
           edges  {
             node {
-              ...QuotesTable_quotes
+              ...QuotesList_quotes
             }
           }
           pageInfo {

@@ -8,7 +8,7 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type QuotesTable_quotes$ref = any;
+type QuotesList_quotes$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type QuotesContainer_quotes$ref: FragmentReference;
 declare export opaque type QuotesContainer_quotes$fragmentType: QuotesContainer_quotes$ref;
@@ -17,7 +17,7 @@ export type QuotesContainer_quotes = {|
     +totalCount: number,
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +$fragmentRefs: QuotesTable_quotes$ref
+        +$fragmentRefs: QuotesList_quotes$ref
       |}
     |}>,
     +pageInfo: {|
@@ -110,7 +110,7 @@ const node/*: ReaderFragment*/ = {
                 },
                 {
                   "kind": "FragmentSpread",
-                  "name": "QuotesTable_quotes",
+                  "name": "QuotesList_quotes",
                   "args": null
                 }
               ]
@@ -168,6 +168,6 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '831976b0be540f6f415698133321879a';
+(node/*: any*/).hash = '066eb97399f9dbf9006b65b630ca97d9';
 
 module.exports = node;

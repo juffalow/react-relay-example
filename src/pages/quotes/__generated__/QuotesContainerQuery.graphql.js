@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 81097682408a06e87aa2f3605da1e8fb
+ * @relayHash a4b2b229e622a85265289b3925f1eb4e
  */
 
 /* eslint-disable */
@@ -32,10 +32,14 @@ query QuotesContainerQuery(
   ...QuotesContainer_quotes
 }
 
-fragment QuoteRow_quote on Quote {
+fragment QuoteCard_quote on Quote {
   _id
   text
-  createdAt
+  author {
+    id
+    firstName
+    lastName
+  }
 }
 
 fragment QuotesContainer_quotes on Query {
@@ -43,7 +47,7 @@ fragment QuotesContainer_quotes on Query {
     totalCount
     edges {
       node {
-        ...QuotesTable_quotes
+        ...QuotesList_quotes
         id
         __typename
       }
@@ -58,9 +62,9 @@ fragment QuotesContainer_quotes on Query {
   }
 }
 
-fragment QuotesTable_quotes on Quote {
+fragment QuotesList_quotes on Quote {
   id
-  ...QuoteRow_quote
+  ...QuoteCard_quote
 }
 */
 
@@ -90,7 +94,14 @@ v1 = [
     "name": "first",
     "variableName": "first"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -146,13 +157,7 @@ return {
                 "concreteType": "Quote",
                 "plural": false,
                 "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "id",
-                    "args": null,
-                    "storageKey": null
-                  },
+                  (v2/*: any*/),
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -168,11 +173,30 @@ return {
                     "storageKey": null
                   },
                   {
-                    "kind": "ScalarField",
+                    "kind": "LinkedField",
                     "alias": null,
-                    "name": "createdAt",
+                    "name": "author",
+                    "storageKey": null,
                     "args": null,
-                    "storageKey": null
+                    "concreteType": "Author",
+                    "plural": false,
+                    "selections": [
+                      (v2/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "firstName",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "lastName",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
                   },
                   {
                     "kind": "ScalarField",
@@ -248,11 +272,12 @@ return {
     "operationKind": "query",
     "name": "QuotesContainerQuery",
     "id": null,
-    "text": "query QuotesContainerQuery(\n  $first: Int\n  $after: String\n) {\n  ...QuotesContainer_quotes\n}\n\nfragment QuoteRow_quote on Quote {\n  _id\n  text\n  createdAt\n}\n\nfragment QuotesContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesTable_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuotesTable_quotes on Quote {\n  id\n  ...QuoteRow_quote\n}\n",
+    "text": "query QuotesContainerQuery(\n  $first: Int\n  $after: String\n) {\n  ...QuotesContainer_quotes\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
 (node/*: any*/).hash = '6c998ae1a7241d68e1d80ae7006659be';
+
 module.exports = node;
