@@ -39,9 +39,17 @@ export type QuotesContainer_quotes$key = {
 
 
 const node/*: ReaderFragment*/ = {
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "after"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "first"
+    }
+  ],
   "kind": "Fragment",
-  "name": "QuotesContainer_quotes",
-  "type": "Query",
   "metadata": {
     "connection": [
       {
@@ -54,118 +62,109 @@ const node/*: ReaderFragment*/ = {
       }
     ]
   },
-  "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "first",
-      "type": "Int"
-    },
-    {
-      "kind": "RootArgument",
-      "name": "after",
-      "type": "String"
-    }
-  ],
+  "name": "QuotesContainer_quotes",
   "selections": [
     {
-      "kind": "LinkedField",
       "alias": "quotes",
-      "name": "__QuotesList_quotes_connection",
-      "storageKey": null,
       "args": null,
       "concreteType": "QuoteConnection",
+      "kind": "LinkedField",
+      "name": "__QuotesList_quotes_connection",
       "plural": false,
       "selections": [
         {
-          "kind": "ScalarField",
           "alias": null,
-          "name": "totalCount",
           "args": null,
+          "kind": "ScalarField",
+          "name": "totalCount",
           "storageKey": null
         },
         {
-          "kind": "LinkedField",
           "alias": null,
-          "name": "edges",
-          "storageKey": null,
           "args": null,
           "concreteType": "QuoteEdge",
+          "kind": "LinkedField",
+          "name": "edges",
           "plural": true,
           "selections": [
             {
-              "kind": "LinkedField",
               "alias": null,
-              "name": "node",
-              "storageKey": null,
               "args": null,
               "concreteType": "Quote",
+              "kind": "LinkedField",
+              "name": "node",
               "plural": false,
               "selections": [
                 {
-                  "kind": "ScalarField",
                   "alias": null,
-                  "name": "__typename",
                   "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
                   "storageKey": null
                 },
                 {
+                  "args": null,
                   "kind": "FragmentSpread",
-                  "name": "QuotesList_quotes",
-                  "args": null
+                  "name": "QuotesList_quotes"
                 }
-              ]
+              ],
+              "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
-              "name": "cursor",
               "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
               "storageKey": null
             }
-          ]
+          ],
+          "storageKey": null
         },
         {
-          "kind": "LinkedField",
           "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
           "args": null,
           "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
           "plural": false,
           "selections": [
             {
-              "kind": "ScalarField",
               "alias": null,
+              "args": null,
+              "kind": "ScalarField",
               "name": "startCursor",
-              "args": null,
               "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
+              "args": null,
+              "kind": "ScalarField",
               "name": "endCursor",
-              "args": null,
               "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
+              "args": null,
+              "kind": "ScalarField",
               "name": "hasNextPage",
-              "args": null,
               "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
-              "name": "hasPreviousPage",
               "args": null,
+              "kind": "ScalarField",
+              "name": "hasPreviousPage",
               "storageKey": null
             }
-          ]
+          ],
+          "storageKey": null
         }
-      ]
+      ],
+      "storageKey": null
     }
-  ]
+  ],
+  "type": "Query",
+  "abstractKey": null
 };
 // prettier-ignore
 (node/*: any*/).hash = '066eb97399f9dbf9006b65b630ca97d9';

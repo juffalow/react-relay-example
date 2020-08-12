@@ -27,27 +27,28 @@ export type QuotesList_quotes$key = $ReadOnlyArray<{
 
 
 const node/*: ReaderFragment*/ = {
+  "argumentDefinitions": [],
   "kind": "Fragment",
-  "name": "QuotesList_quotes",
-  "type": "Quote",
   "metadata": {
     "plural": true
   },
-  "argumentDefinitions": [],
+  "name": "QuotesList_quotes",
   "selections": [
     {
-      "kind": "ScalarField",
       "alias": null,
-      "name": "id",
       "args": null,
+      "kind": "ScalarField",
+      "name": "id",
       "storageKey": null
     },
     {
+      "args": null,
       "kind": "FragmentSpread",
-      "name": "QuoteCard_quote",
-      "args": null
+      "name": "QuoteCard_quote"
     }
-  ]
+  ],
+  "type": "Quote",
+  "abstractKey": null
 };
 // prettier-ignore
 (node/*: any*/).hash = '97b15e779b467624fd77817415eced04';
