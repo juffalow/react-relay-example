@@ -15,9 +15,11 @@ jobs:
       run: sed "s|http://localhost:3013/graphql|https://graphql.juffalow.com/graphql|g" ./src/config.example.ts > ./src/config.ts
     - name: Build
       run: docker build -t juffalow/react-relay-example .
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: Push image to Digital Ocean Container Registry
-      env:
-        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       run: |
         VERSION=${GITHUB_REF#"refs/tags/"}
         IMAGE_NAME=registry.digitalocean.com/juffalow/react-relay-example
