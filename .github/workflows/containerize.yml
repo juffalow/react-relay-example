@@ -11,8 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: yarn install
+    - name: Create config file
+      run: sed "s|http://localhost:3013/graphql|https://graphql.juffalow.com/graphql|g" ./src/config.example.ts > ./src/config.ts
     - name: Build
       run: docker build -t juffalow/react-relay-example .
     - name: Push image to Digital Ocean Container Registry
