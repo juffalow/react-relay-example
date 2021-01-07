@@ -30,4 +30,6 @@ jobs:
         docker tag juffalow/react-relay-example $IMAGE_NAME:$VERSION
         
         doctl auth init
+        doctl registry login
+        
         docker push $IMAGE_NAME:$VERSION
