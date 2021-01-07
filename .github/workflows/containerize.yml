@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: yarn install
+    - name: Build
+      run: docker build -t juffalow/react-relay-example .
+    - name: Push image to Digital Ocean Container Registry
+      env:
+        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      run: |
+        VERSION=${GITHUB_REF#"refs/tags/"}
+        IMAGE_NAME=registry.digitalocean.com/juffalow/react-relay-example
+        
+        echo $VERSION
+        echo $IMAGE_NAME
+        
+        docker tag juffalow/react-relay-example $IMAGE_NAME:$VERSION
+        
+        doctl auth init
+        docker push $IMAGE_NAME:$VERSION
