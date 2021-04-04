@@ -48,6 +48,9 @@ yarn start
 
 ## Old version
 
+This version is using older Relay version `10.0.1`:
+* [1.2.3](https://github.com/juffalow/react-relay-example/tree/1.0.0)
+
 Working version of React + Relay application written in JavaScript:
 * [1.0.0](https://github.com/juffalow/react-relay-example/tree/1.0.0)
 
