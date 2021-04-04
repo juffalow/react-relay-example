@@ -3,6 +3,7 @@ FROM node:14.15.1-alpine as build
 RUN mkdir /home/node/react-relay-example/ && chown -R node:node /home/node/react-relay-example
 WORKDIR /home/node/react-relay-example
 COPY --chown=node:node . .
+RUN rm tsconfig.json
 RUN yarn install --frozen-lockfile && yarn build
 
 FROM nginx:stable-alpine

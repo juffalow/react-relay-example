@@ -1,41 +1,36 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
-
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type AuthorsContainer_authors$ref = any;
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type AuthorsOrderField = "CREATED_AT" | "ID" | "%future added value";
 export type Direction = "ASC" | "DESC" | "%future added value";
-export type AuthorsOrder = {|
-  field: AuthorsOrderField,
-  direction: Direction,
-|};
-export type AuthorsContainerPaginationQueryVariables = {|
-  first: number,
-  after?: ?string,
-  firstName?: ?string,
-  lastName?: ?string,
-  orderBy?: ?$ReadOnlyArray<?AuthorsOrder>,
-|};
-export type AuthorsContainerPaginationQueryResponse = {|
-  +$fragmentRefs: AuthorsContainer_authors$ref
-|};
-export type AuthorsContainerPaginationQuery = {|
-  variables: AuthorsContainerPaginationQueryVariables,
-  response: AuthorsContainerPaginationQueryResponse,
-|};
-*/
+export type AuthorsOrder = {
+    field: AuthorsOrderField;
+    direction: Direction;
+};
+export type AuthorsContainerAuthorsQueryVariables = {
+    after?: string | null;
+    first?: number | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    orderBy?: Array<AuthorsOrder | null> | null;
+};
+export type AuthorsContainerAuthorsQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;
+};
+export type AuthorsContainerAuthorsQuery = {
+    readonly response: AuthorsContainerAuthorsQueryResponse;
+    readonly variables: AuthorsContainerAuthorsQueryVariables;
+};
+
 
 
 /*
-query AuthorsContainerPaginationQuery(
-  $first: Int!
+query AuthorsContainerAuthorsQuery(
   $after: String
+  $first: Int
   $firstName: String
   $lastName: String
   $orderBy: [AuthorsOrder]
@@ -75,33 +70,35 @@ fragment AuthorsTable_authors on Author {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "after"
-},
-v1 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "first"
-},
-v2 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "firstName"
-},
-v3 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "lastName"
-},
-v4 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "orderBy"
-},
-v5 = [
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "after"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "first"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "firstName"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "lastName"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "orderBy"
+  }
+],
+v1 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -130,16 +127,10 @@ v5 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/),
-      (v2/*: any*/),
-      (v3/*: any*/),
-      (v4/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "AuthorsContainerPaginationQuery",
+    "name": "AuthorsContainerAuthorsQuery",
     "selections": [
       {
         "args": null,
@@ -152,19 +143,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/),
-      (v2/*: any*/),
-      (v3/*: any*/),
-      (v4/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "AuthorsContainerPaginationQuery",
+    "name": "AuthorsContainerAuthorsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v5/*: any*/),
+        "args": (v1/*: any*/),
         "concreteType": "AuthorConnection",
         "kind": "LinkedField",
         "name": "authors",
@@ -285,7 +270,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v5/*: any*/),
+        "args": (v1/*: any*/),
         "filters": [
           "firstName",
           "lastName",
@@ -299,16 +284,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "738f72b33af4e9ce742747fd8bedebc6",
+    "cacheID": "987ceff9cfbff864c08ba19027c03279",
     "id": null,
     "metadata": {},
-    "name": "AuthorsContainerPaginationQuery",
+    "name": "AuthorsContainerAuthorsQuery",
     "operationKind": "query",
-    "text": "query AuthorsContainerPaginationQuery(\n  $first: Int!\n  $after: String\n  $firstName: String\n  $lastName: String\n  $orderBy: [AuthorsOrder]\n) {\n  ...AuthorsContainer_authors\n}\n\nfragment AuthorRow_author on Author {\n  _id\n  firstName\n  lastName\n}\n\nfragment AuthorsContainer_authors on Query {\n  authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy) {\n    totalCount\n    edges {\n      node {\n        ...AuthorsTable_authors\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment AuthorsTable_authors on Author {\n  id\n  ...AuthorRow_author\n}\n"
+    "text": "query AuthorsContainerAuthorsQuery(\n  $after: String\n  $first: Int\n  $firstName: String\n  $lastName: String\n  $orderBy: [AuthorsOrder]\n) {\n  ...AuthorsContainer_authors\n}\n\nfragment AuthorRow_author on Author {\n  _id\n  firstName\n  lastName\n}\n\nfragment AuthorsContainer_authors on Query {\n  authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy) {\n    totalCount\n    edges {\n      node {\n        ...AuthorsTable_authors\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment AuthorsTable_authors on Author {\n  id\n  ...AuthorRow_author\n}\n"
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '623677091cc47dc265cf257d34d6e19a';
-
-module.exports = node;
+(node as any).hash = '48e0a0da39ba713a32cd10c92740a7e0';
+export default node;

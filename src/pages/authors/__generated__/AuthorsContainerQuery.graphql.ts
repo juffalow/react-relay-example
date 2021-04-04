@@ -1,42 +1,55 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type AuthorsOrderField = "CREATED_AT" | "ID" | "%future added value";
+export type Direction = "ASC" | "DESC" | "%future added value";
+export type AuthorsOrder = {
+    field: AuthorsOrderField;
+    direction: Direction;
+};
+export type AuthorsContainerQueryVariables = {
+    first?: number | null;
+    after?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    orderBy?: Array<AuthorsOrder | null> | null;
+};
+export type AuthorsContainerQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;
+};
+export type AuthorsContainerQuery = {
+    readonly response: AuthorsContainerQueryResponse;
+    readonly variables: AuthorsContainerQueryVariables;
+};
 
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type HomeContainer_quotes$ref = any;
-export type HomeContainerQueryVariables = {|
-  first?: ?number,
-  after?: ?string,
-|};
-export type HomeContainerQueryResponse = {|
-  +$fragmentRefs: HomeContainer_quotes$ref
-|};
-export type HomeContainerQuery = {|
-  variables: HomeContainerQueryVariables,
-  response: HomeContainerQueryResponse,
-|};
-*/
 
 
 /*
-query HomeContainerQuery(
+query AuthorsContainerQuery(
   $first: Int
   $after: String
+  $firstName: String
+  $lastName: String
+  $orderBy: [AuthorsOrder]
 ) {
-  ...HomeContainer_quotes
+  ...AuthorsContainer_authors
 }
 
-fragment HomeContainer_quotes on Query {
-  quotes(first: $first, after: $after) {
+fragment AuthorRow_author on Author {
+  _id
+  firstName
+  lastName
+}
+
+fragment AuthorsContainer_authors on Query {
+  authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy) {
     totalCount
     edges {
       node {
-        ...QuotesList_quotes
+        ...AuthorsTable_authors
         id
         __typename
       }
@@ -51,23 +64,13 @@ fragment HomeContainer_quotes on Query {
   }
 }
 
-fragment QuoteCard_quote on Quote {
-  _id
-  text
-  author {
-    id
-    firstName
-    lastName
-  }
-}
-
-fragment QuotesList_quotes on Quote {
+fragment AuthorsTable_authors on Author {
   id
-  ...QuoteCard_quote
+  ...AuthorRow_author
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = {
   "defaultValue": null,
   "kind": "LocalArgument",
@@ -78,7 +81,22 @@ v1 = {
   "kind": "LocalArgument",
   "name": "first"
 },
-v2 = [
+v2 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "firstName"
+},
+v3 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "lastName"
+},
+v4 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "orderBy"
+},
+v5 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -88,29 +106,40 @@ v2 = [
     "kind": "Variable",
     "name": "first",
     "variableName": "first"
+  },
+  {
+    "kind": "Variable",
+    "name": "firstName",
+    "variableName": "firstName"
+  },
+  {
+    "kind": "Variable",
+    "name": "lastName",
+    "variableName": "lastName"
+  },
+  {
+    "kind": "Variable",
+    "name": "orderBy",
+    "variableName": "orderBy"
   }
-],
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
+];
 return {
   "fragment": {
     "argumentDefinitions": [
       (v0/*: any*/),
-      (v1/*: any*/)
+      (v1/*: any*/),
+      (v2/*: any*/),
+      (v3/*: any*/),
+      (v4/*: any*/)
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "HomeContainerQuery",
+    "name": "AuthorsContainerQuery",
     "selections": [
       {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "HomeContainer_quotes"
+        "name": "AuthorsContainer_authors"
       }
     ],
     "type": "Query",
@@ -120,17 +149,20 @@ return {
   "operation": {
     "argumentDefinitions": [
       (v1/*: any*/),
-      (v0/*: any*/)
+      (v0/*: any*/),
+      (v2/*: any*/),
+      (v3/*: any*/),
+      (v4/*: any*/)
     ],
     "kind": "Operation",
-    "name": "HomeContainerQuery",
+    "name": "AuthorsContainerQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
-        "concreteType": "QuoteConnection",
+        "args": (v5/*: any*/),
+        "concreteType": "AuthorConnection",
         "kind": "LinkedField",
-        "name": "quotes",
+        "name": "authors",
         "plural": false,
         "selections": [
           {
@@ -143,7 +175,7 @@ return {
           {
             "alias": null,
             "args": null,
-            "concreteType": "QuoteEdge",
+            "concreteType": "AuthorEdge",
             "kind": "LinkedField",
             "name": "edges",
             "plural": true,
@@ -151,12 +183,18 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Quote",
+                "concreteType": "Author",
                 "kind": "LinkedField",
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "id",
+                    "storageKey": null
+                  },
                   {
                     "alias": null,
                     "args": null,
@@ -168,33 +206,14 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "text",
+                    "name": "firstName",
                     "storageKey": null
                   },
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "Author",
-                    "kind": "LinkedField",
-                    "name": "author",
-                    "plural": false,
-                    "selections": [
-                      (v3/*: any*/),
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "firstName",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "lastName",
-                        "storageKey": null
-                      }
-                    ],
+                    "kind": "ScalarField",
+                    "name": "lastName",
                     "storageKey": null
                   },
                   {
@@ -261,26 +280,28 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
-        "filters": null,
+        "args": (v5/*: any*/),
+        "filters": [
+          "firstName",
+          "lastName",
+          "orderBy"
+        ],
         "handle": "connection",
-        "key": "QuotesList_quotes",
+        "key": "AuthorsTable_authors",
         "kind": "LinkedHandle",
-        "name": "quotes"
+        "name": "authors"
       }
     ]
   },
   "params": {
-    "cacheID": "e17d1edf6d57664c27d41886ddb440c0",
+    "cacheID": "63dedde489455c08023c2ed96813e3d1",
     "id": null,
     "metadata": {},
-    "name": "HomeContainerQuery",
+    "name": "AuthorsContainerQuery",
     "operationKind": "query",
-    "text": "query HomeContainerQuery(\n  $first: Int\n  $after: String\n) {\n  ...HomeContainer_quotes\n}\n\nfragment HomeContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n"
+    "text": "query AuthorsContainerQuery(\n  $first: Int\n  $after: String\n  $firstName: String\n  $lastName: String\n  $orderBy: [AuthorsOrder]\n) {\n  ...AuthorsContainer_authors\n}\n\nfragment AuthorRow_author on Author {\n  _id\n  firstName\n  lastName\n}\n\nfragment AuthorsContainer_authors on Query {\n  authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy) {\n    totalCount\n    edges {\n      node {\n        ...AuthorsTable_authors\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment AuthorsTable_authors on Author {\n  id\n  ...AuthorRow_author\n}\n"
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'bc172e859d26e5d66330beaabb51b14d';
-
-module.exports = node;
+(node as any).hash = '840d568f31141a94fd2d1f62af3e8bff';
+export default node;

@@ -1,47 +1,32 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type HomeContainerQuotesQueryVariables = {
+    after?: string | null;
+    first?: number | null;
+};
+export type HomeContainerQuotesQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
+};
+export type HomeContainerQuotesQuery = {
+    readonly response: HomeContainerQuotesQueryResponse;
+    readonly variables: HomeContainerQuotesQueryVariables;
+};
 
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type QuotesContainer_quotes$ref = any;
-export type QuotesContainerQueryVariables = {|
-  first?: ?number,
-  after?: ?string,
-|};
-export type QuotesContainerQueryResponse = {|
-  +$fragmentRefs: QuotesContainer_quotes$ref
-|};
-export type QuotesContainerQuery = {|
-  variables: QuotesContainerQueryVariables,
-  response: QuotesContainerQueryResponse,
-|};
-*/
 
 
 /*
-query QuotesContainerQuery(
-  $first: Int
+query HomeContainerQuotesQuery(
   $after: String
+  $first: Int
 ) {
-  ...QuotesContainer_quotes
+  ...HomeContainer_quotes
 }
 
-fragment QuoteCard_quote on Quote {
-  _id
-  text
-  author {
-    id
-    firstName
-    lastName
-  }
-}
-
-fragment QuotesContainer_quotes on Query {
+fragment HomeContainer_quotes on Query {
   quotes(first: $first, after: $after) {
     totalCount
     edges {
@@ -61,24 +46,36 @@ fragment QuotesContainer_quotes on Query {
   }
 }
 
+fragment QuoteCard_quote on Quote {
+  _id
+  text
+  author {
+    id
+    firstName
+    lastName
+  }
+}
+
 fragment QuotesList_quotes on Quote {
   id
   ...QuoteCard_quote
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "after"
-},
-v1 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "first"
-},
-v2 = [
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "after"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "first"
+  }
+],
+v1 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -90,7 +87,7 @@ v2 = [
     "variableName": "first"
   }
 ],
-v3 = {
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -99,18 +96,15 @@ v3 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "QuotesContainerQuery",
+    "name": "HomeContainerQuotesQuery",
     "selections": [
       {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "QuotesContainer_quotes"
+        "name": "HomeContainer_quotes"
       }
     ],
     "type": "Query",
@@ -118,16 +112,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "QuotesContainerQuery",
+    "name": "HomeContainerQuotesQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v1/*: any*/),
         "concreteType": "QuoteConnection",
         "kind": "LinkedField",
         "name": "quotes",
@@ -156,7 +147,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
+                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -179,7 +170,7 @@ return {
                     "name": "author",
                     "plural": false,
                     "selections": [
-                      (v3/*: any*/),
+                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -261,7 +252,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v1/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "QuotesList_quotes",
@@ -271,16 +262,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "65ae9f03cfdc0468846efc0807875eb8",
+    "cacheID": "7fc3ebc5e55f6131686eeb00fb67d8fe",
     "id": null,
     "metadata": {},
-    "name": "QuotesContainerQuery",
+    "name": "HomeContainerQuotesQuery",
     "operationKind": "query",
-    "text": "query QuotesContainerQuery(\n  $first: Int\n  $after: String\n) {\n  ...QuotesContainer_quotes\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n"
+    "text": "query HomeContainerQuotesQuery(\n  $after: String\n  $first: Int\n) {\n  ...HomeContainer_quotes\n}\n\nfragment HomeContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n"
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '6c998ae1a7241d68e1d80ae7006659be';
-
-module.exports = node;
+(node as any).hash = '27cae3ca48a8efae7e72a578dca9d3aa';
+export default node;

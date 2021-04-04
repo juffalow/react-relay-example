@@ -1,44 +1,39 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-type QuotesList_quotes$ref = any;
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type HomeContainer_quotes$ref: FragmentReference;
-declare export opaque type HomeContainer_quotes$fragmentType: HomeContainer_quotes$ref;
-export type HomeContainer_quotes = {|
-  +quotes: ?{|
-    +totalCount: number,
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +$fragmentRefs: QuotesList_quotes$ref
-      |}
-    |}>,
-    +pageInfo: {|
-      +startCursor: ?string,
-      +endCursor: ?string,
-      +hasNextPage: ?boolean,
-      +hasPreviousPage: ?boolean,
-    |},
-  |},
-  +$refType: HomeContainer_quotes$ref,
-|};
-export type HomeContainer_quotes$data = HomeContainer_quotes;
-export type HomeContainer_quotes$key = {
-  +$data?: HomeContainer_quotes$data,
-  +$fragmentRefs: HomeContainer_quotes$ref,
-  ...
+import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type AuthorsContainer_authors = {
+    readonly authors: {
+        readonly totalCount: number;
+        readonly edges: ReadonlyArray<{
+            readonly node: {
+                readonly " $fragmentRefs": FragmentRefs<"AuthorsTable_authors">;
+            } | null;
+        } | null> | null;
+        readonly pageInfo: {
+            readonly startCursor: string | null;
+            readonly endCursor: string | null;
+            readonly hasNextPage: boolean | null;
+            readonly hasPreviousPage: boolean | null;
+        };
+    } | null;
+    readonly " $refType": "AuthorsContainer_authors";
 };
-*/
+export type AuthorsContainer_authors$data = AuthorsContainer_authors;
+export type AuthorsContainer_authors$key = {
+    readonly " $data"?: AuthorsContainer_authors$data;
+    readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;
+};
 
 
-const node/*: ReaderFragment*/ = {
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "authors"
+];
+return {
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
@@ -47,6 +42,18 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "RootArgument",
       "name": "first"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "firstName"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "lastName"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "orderBy"
     }
   ],
   "kind": "Fragment",
@@ -56,20 +63,46 @@ const node/*: ReaderFragment*/ = {
         "count": "first",
         "cursor": "after",
         "direction": "forward",
-        "path": [
-          "quotes"
-        ]
+        "path": (v0/*: any*/)
       }
-    ]
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "after"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [],
+      "operation": require('./AuthorsContainerAuthorsQuery.graphql.ts')
+    }
   },
-  "name": "HomeContainer_quotes",
+  "name": "AuthorsContainer_authors",
   "selections": [
     {
-      "alias": "quotes",
-      "args": null,
-      "concreteType": "QuoteConnection",
+      "alias": "authors",
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "firstName",
+          "variableName": "firstName"
+        },
+        {
+          "kind": "Variable",
+          "name": "lastName",
+          "variableName": "lastName"
+        },
+        {
+          "kind": "Variable",
+          "name": "orderBy",
+          "variableName": "orderBy"
+        }
+      ],
+      "concreteType": "AuthorConnection",
       "kind": "LinkedField",
-      "name": "__QuotesList_quotes_connection",
+      "name": "__AuthorsTable_authors_connection",
       "plural": false,
       "selections": [
         {
@@ -82,7 +115,7 @@ const node/*: ReaderFragment*/ = {
         {
           "alias": null,
           "args": null,
-          "concreteType": "QuoteEdge",
+          "concreteType": "AuthorEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -90,7 +123,7 @@ const node/*: ReaderFragment*/ = {
             {
               "alias": null,
               "args": null,
-              "concreteType": "Quote",
+              "concreteType": "Author",
               "kind": "LinkedField",
               "name": "node",
               "plural": false,
@@ -105,7 +138,7 @@ const node/*: ReaderFragment*/ = {
                 {
                   "args": null,
                   "kind": "FragmentSpread",
-                  "name": "QuotesList_quotes"
+                  "name": "AuthorsTable_authors"
                 }
               ],
               "storageKey": null
@@ -166,7 +199,6 @@ const node/*: ReaderFragment*/ = {
   "type": "Query",
   "abstractKey": null
 };
-// prettier-ignore
-(node/*: any*/).hash = '6eb4b4225e2742fe2697b340452f27bb';
-
-module.exports = node;
+})();
+(node as any).hash = '48e0a0da39ba713a32cd10c92740a7e0';
+export default node;

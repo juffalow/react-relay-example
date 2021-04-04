@@ -1,36 +1,28 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type QuoteCard_quote$ref: FragmentReference;
-declare export opaque type QuoteCard_quote$fragmentType: QuoteCard_quote$ref;
-export type QuoteCard_quote = {|
-  +_id: string,
-  +text: string,
-  +author: ?{|
-    +id: string,
-    +firstName: string,
-    +lastName: string,
-  |},
-  +$refType: QuoteCard_quote$ref,
-|};
+import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type QuoteCard_quote = {
+    readonly _id: string;
+    readonly text: string;
+    readonly author: {
+        readonly id: string;
+        readonly firstName: string;
+        readonly lastName: string;
+    } | null;
+    readonly " $refType": "QuoteCard_quote";
+};
 export type QuoteCard_quote$data = QuoteCard_quote;
 export type QuoteCard_quote$key = {
-  +$data?: QuoteCard_quote$data,
-  +$fragmentRefs: QuoteCard_quote$ref,
-  ...
+    readonly " $data"?: QuoteCard_quote$data;
+    readonly " $fragmentRefs": FragmentRefs<"QuoteCard_quote">;
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -86,7 +78,5 @@ const node/*: ReaderFragment*/ = {
   "type": "Quote",
   "abstractKey": null
 };
-// prettier-ignore
-(node/*: any*/).hash = 'f2187e84ec570b51588b4702373bfc1b';
-
-module.exports = node;
+(node as any).hash = 'f2187e84ec570b51588b4702373bfc1b';
+export default node;

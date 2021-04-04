@@ -1,47 +1,32 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type HomeContainerQueryVariables = {
+    first?: number | null;
+    after?: string | null;
+};
+export type HomeContainerQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
+};
+export type HomeContainerQuery = {
+    readonly response: HomeContainerQueryResponse;
+    readonly variables: HomeContainerQueryVariables;
+};
 
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type QuotesContainer_quotes$ref = any;
-export type QuotesContainerPaginationQueryVariables = {|
-  first: number,
-  after?: ?string,
-|};
-export type QuotesContainerPaginationQueryResponse = {|
-  +$fragmentRefs: QuotesContainer_quotes$ref
-|};
-export type QuotesContainerPaginationQuery = {|
-  variables: QuotesContainerPaginationQueryVariables,
-  response: QuotesContainerPaginationQueryResponse,
-|};
-*/
 
 
 /*
-query QuotesContainerPaginationQuery(
-  $first: Int!
+query HomeContainerQuery(
+  $first: Int
   $after: String
 ) {
-  ...QuotesContainer_quotes
+  ...HomeContainer_quotes
 }
 
-fragment QuoteCard_quote on Quote {
-  _id
-  text
-  author {
-    id
-    firstName
-    lastName
-  }
-}
-
-fragment QuotesContainer_quotes on Query {
+fragment HomeContainer_quotes on Query {
   quotes(first: $first, after: $after) {
     totalCount
     edges {
@@ -61,13 +46,23 @@ fragment QuotesContainer_quotes on Query {
   }
 }
 
+fragment QuoteCard_quote on Quote {
+  _id
+  text
+  author {
+    id
+    firstName
+    lastName
+  }
+}
+
 fragment QuotesList_quotes on Quote {
   id
   ...QuoteCard_quote
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = {
   "defaultValue": null,
   "kind": "LocalArgument",
@@ -105,12 +100,12 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "QuotesContainerPaginationQuery",
+    "name": "HomeContainerQuery",
     "selections": [
       {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "QuotesContainer_quotes"
+        "name": "HomeContainer_quotes"
       }
     ],
     "type": "Query",
@@ -123,7 +118,7 @@ return {
       (v0/*: any*/)
     ],
     "kind": "Operation",
-    "name": "QuotesContainerPaginationQuery",
+    "name": "HomeContainerQuery",
     "selections": [
       {
         "alias": null,
@@ -271,16 +266,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8d8f69ef222d8722451dcea27489010c",
+    "cacheID": "e17d1edf6d57664c27d41886ddb440c0",
     "id": null,
     "metadata": {},
-    "name": "QuotesContainerPaginationQuery",
+    "name": "HomeContainerQuery",
     "operationKind": "query",
-    "text": "query QuotesContainerPaginationQuery(\n  $first: Int!\n  $after: String\n) {\n  ...QuotesContainer_quotes\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n"
+    "text": "query HomeContainerQuery(\n  $first: Int\n  $after: String\n) {\n  ...HomeContainer_quotes\n}\n\nfragment HomeContainer_quotes on Query {\n  quotes(first: $first, after: $after) {\n    totalCount\n    edges {\n      node {\n        ...QuotesList_quotes\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment QuoteCard_quote on Quote {\n  _id\n  text\n  author {\n    id\n    firstName\n    lastName\n  }\n}\n\nfragment QuotesList_quotes on Quote {\n  id\n  ...QuoteCard_quote\n}\n"
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'b81c00147d53d8e5cad9a719b7c9b1c6';
-
-module.exports = node;
+(node as any).hash = 'bc172e859d26e5d66330beaabb51b14d';
+export default node;

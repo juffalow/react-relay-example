@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SEO from 'components/SEO';
+import SEO from '../components/SEO';
 import AuthorsContainer from './authors/AuthorsContainer';
 
 const Authors: React.FC = () => {

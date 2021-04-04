@@ -1,32 +1,24 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type AuthorRow_author$ref: FragmentReference;
-declare export opaque type AuthorRow_author$fragmentType: AuthorRow_author$ref;
-export type AuthorRow_author = {|
-  +_id: string,
-  +firstName: string,
-  +lastName: string,
-  +$refType: AuthorRow_author$ref,
-|};
+import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type AuthorRow_author = {
+    readonly _id: string;
+    readonly firstName: string;
+    readonly lastName: string;
+    readonly " $refType": "AuthorRow_author";
+};
 export type AuthorRow_author$data = AuthorRow_author;
 export type AuthorRow_author$key = {
-  +$data?: AuthorRow_author$data,
-  +$fragmentRefs: AuthorRow_author$ref,
-  ...
+    readonly " $data"?: AuthorRow_author$data;
+    readonly " $fragmentRefs": FragmentRefs<"AuthorRow_author">;
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -57,7 +49,5 @@ const node/*: ReaderFragment*/ = {
   "type": "Author",
   "abstractKey": null
 };
-// prettier-ignore
-(node/*: any*/).hash = '29d2e2c3b5e4e242afc3a32a4923d822';
-
-module.exports = node;
+(node as any).hash = '29d2e2c3b5e4e242afc3a32a4923d822';
+export default node;

@@ -1,45 +1,22 @@
-import React from 'react';
-import Alert from 'react-bootstrap/Alert';
-import Spinner from 'react-bootstrap/Spinner';
+import React, { Suspense } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { QueryRenderer, createPaginationContainer } from 'react-relay';
+import { usePaginationFragment, useLazyLoadQuery } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
-import environment from 'environment';
-import QuotesList from '../quotes/QuotesList';
-import { Quote } from '../../types/Quote';
+import QuotesList from './QuotesList';
+import { HomeContainer_quotes$key } from './__generated__/HomeContainer_quotes.graphql';
+import { HomeContainerQuery } from './__generated__/HomeContainerQuery.graphql';
 
 interface Props {
-  quotes: {
-    quotes: {
-      edges: Array<{
-        node: Quote
-      }>
-    },
-  };
-  relay: any;
+  query: any;
 }
 
-const Quotes: React.FC<Props> = (props: Props) => (
-  <>
-    <QuotesList quotes={props.quotes.quotes.edges.map(edge => edge.node)} />
-    <Row className="mt-4 text-center">
-      <Col>
-        {
-          props.relay.hasMore() &&
-          <Button onClick={() => props.relay.loadMore(9, null)}>Load more</Button>
-        }
-      </Col>
-    </Row>
-  </>
-);
-
-const HomeContainer = createPaginationContainer(
-  Quotes,
-  {
-    quotes: graphql`
-      fragment HomeContainer_quotes on Query {
+const Quotes: React.FC<Props> = (props: Props) => {
+  const { data, loadNext, hasNext } = usePaginationFragment<HomeContainerQuery, HomeContainer_quotes$key>(
+    graphql`
+      fragment HomeContainer_quotes on Query
+      @refetchable(queryName: "HomeContainerQuotesQuery") {
         quotes (
           first: $first
           after: $after
@@ -57,64 +34,41 @@ const HomeContainer = createPaginationContainer(
             hasPreviousPage
           }
         }
-      }`
-  },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props: any) {
-      return props.quotes.quotes;
-    },
-    getFragmentVariables(prevVars: any, totalCount: number) {
-      return {
-        ...prevVars,
-        count: totalCount,
-      };
-    },
-    getVariables(props: any, { count, cursor }, fragmentVariables: any) {
-      return {
-        first: count,
-        after: cursor,
-      };
-    },
-    query: graphql`
-      query HomeContainerPaginationQuery(
-        $first: Int!
-        $after: String
-      ) {
-        ...HomeContainer_quotes
-      }
-    `
-  }
-);
-
-export default function RelayHomeContainer() {
+      }`,
+    props.query
+  );
+  
   return (
-    <QueryRenderer
-      environment={environment}
-      query={graphql`
-        query HomeContainerQuery($first: Int, $after: String) {
-            ...HomeContainer_quotes
-        }
-      `}
-      variables={{ first: 10, after: null }}
-      render={({error, props}: any) => {
-
-        if (error) {
-          return (
-            <Alert variant={'danger'}>
-              Unexpected error occured! Please contact maintainer or try again later.
-            </Alert>
-          );
-        }
-
-        if (!props) {
-          return ( <Spinner animation="border" /> );
-        }
-
-        return (
-          <HomeContainer quotes={props} />
-        );
-      }}
-    />
+    <>
+      <QuotesList quotes={(data as any).quotes.edges.map((edge: any) => edge.node)} />
+      <Row className="mt-4 text-center">
+        <Col>
+          {
+            hasNext &&
+            <Button onClick={() => loadNext(9)}>Load more</Button>
+          }
+        </Col>
+      </Row>
+    </>
   );
 }
+
+const HomeContainer = () => {
+  const query = useLazyLoadQuery<any>(
+    graphql`
+      query HomeContainerQuery($first: Int, $after: String) {
+          ...HomeContainer_quotes
+      }`, {
+      first: 10,
+      after: null,
+    },
+  );
+  
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Quotes query={query} />
+    </Suspense>
+  );
+}
+
+export default HomeContainer;
