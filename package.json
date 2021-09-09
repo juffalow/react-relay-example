@@ -10,7 +10,7 @@
     "react-helmet": "^5.2.1",
     "react-relay": "^11.0.1",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "4.0.0",
+    "react-scripts": "^4.0.3",
     "relay-runtime": "^11.0.1"
   },
   "scripts": {
