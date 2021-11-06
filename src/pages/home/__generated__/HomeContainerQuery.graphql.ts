@@ -3,10 +3,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainerQueryVariables = {
-    first?: number | null;
-    after?: string | null;
+    first?: number | null | undefined;
+    after?: string | null | undefined;
 };
 export type HomeContainerQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;

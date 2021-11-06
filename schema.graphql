@@ -1,5 +1,11 @@
-# source: http://localhost:3013/graphql
-# timestamp: Fri Mar 20 2020 12:46:58 GMT+0100 (Central European Standard Time)
+# source: http://localhost:3010/graphql
+# timestamp: Sat Nov 06 2021 12:16:11 GMT+0100 (Central European Standard Time)
+
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
 
 type Author {
   """Globally unique ID of the author"""
@@ -54,6 +60,10 @@ enum AuthorsOrderField {
   CREATED_AT
 }
 
+input deleteAuthorInput {
+  id: Int!
+}
+
 """The ordering direction."""
 enum Direction {
   """Specifies an ascending order for a given orderBy argument."""
@@ -61,6 +71,16 @@ enum Direction {
 
   """Specifies a descending order for a given orderBy argument."""
   DESC
+}
+
+type Mutation {
+  createAuthor(input: NewAuthor!): Author
+  deleteAuthor(input: deleteAuthorInput!): Author
+}
+
+input NewAuthor {
+  firstName: String!
+  lastName: String!
 }
 
 """Information about pagination in a connection."""

@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+import HomeContainerQuotesQuery from "./HomeContainerQuotesQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainer_quotes = {
     readonly quotes: {
@@ -23,7 +24,7 @@ export type HomeContainer_quotes = {
 };
 export type HomeContainer_quotes$data = HomeContainer_quotes;
 export type HomeContainer_quotes$key = {
-    readonly " $data"?: HomeContainer_quotes$data;
+    readonly " $data"?: HomeContainer_quotes$data | undefined;
     readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
 };
 
@@ -64,7 +65,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./HomeContainerQuotesQuery.graphql.ts')
+      "operation": HomeContainerQuotesQuery
     }
   },
   "name": "HomeContainer_quotes",

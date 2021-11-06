@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+
 import { FragmentRefs } from "relay-runtime";
 export type QuotesList_quotes = ReadonlyArray<{
     readonly id: string;
@@ -11,7 +12,7 @@ export type QuotesList_quotes = ReadonlyArray<{
 }>;
 export type QuotesList_quotes$data = QuotesList_quotes;
 export type QuotesList_quotes$key = ReadonlyArray<{
-    readonly " $data"?: QuotesList_quotes$data;
+    readonly " $data"?: QuotesList_quotes$data | undefined;
     readonly " $fragmentRefs": FragmentRefs<"QuotesList_quotes">;
 }>;
 

@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsOrderField = "CREATED_AT" | "ID" | "%future added value";
 export type Direction = "ASC" | "DESC" | "%future added value";
@@ -11,11 +12,11 @@ export type AuthorsOrder = {
     direction: Direction;
 };
 export type AuthorsContainerQueryVariables = {
-    first?: number | null;
-    after?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    orderBy?: Array<AuthorsOrder | null> | null;
+    first?: number | null | undefined;
+    after?: string | null | undefined;
+    firstName?: string | null | undefined;
+    lastName?: string | null | undefined;
+    orderBy?: Array<AuthorsOrder | null> | null | undefined;
 };
 export type AuthorsContainerQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;

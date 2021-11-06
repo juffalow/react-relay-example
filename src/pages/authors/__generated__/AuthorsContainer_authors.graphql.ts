@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+import AuthorsContainerAuthorsQuery from "./AuthorsContainerAuthorsQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsContainer_authors = {
     readonly authors: {
@@ -23,7 +24,7 @@ export type AuthorsContainer_authors = {
 };
 export type AuthorsContainer_authors$data = AuthorsContainer_authors;
 export type AuthorsContainer_authors$key = {
-    readonly " $data"?: AuthorsContainer_authors$data;
+    readonly " $data"?: AuthorsContainer_authors$data | undefined;
     readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;
 };
 
@@ -76,7 +77,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./AuthorsContainerAuthorsQuery.graphql.ts')
+      "operation": AuthorsContainerAuthorsQuery
     }
   },
   "name": "AuthorsContainer_authors",

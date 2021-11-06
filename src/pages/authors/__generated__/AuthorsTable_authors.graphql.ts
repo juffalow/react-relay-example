@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsTable_authors = ReadonlyArray<{
     readonly id: string;
@@ -11,7 +12,7 @@ export type AuthorsTable_authors = ReadonlyArray<{
 }>;
 export type AuthorsTable_authors$data = AuthorsTable_authors;
 export type AuthorsTable_authors$key = ReadonlyArray<{
-    readonly " $data"?: AuthorsTable_authors$data;
+    readonly " $data"?: AuthorsTable_authors$data | undefined;
     readonly " $fragmentRefs": FragmentRefs<"AuthorsTable_authors">;
 }>;
 
