@@ -46,7 +46,7 @@
     "@types/react-router-dom": "^5.1.3",
     "graphql": "^15.0.0",
     "relay-compiler": "^12.0.0",
-    "relay-compiler-language-typescript": "^14.3.0",
+    "relay-compiler-language-typescript": "^15.0.0",
     "typescript": "^4.0.2"
   }
 }
