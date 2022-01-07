@@ -1,67 +1,28 @@
+/**
+ * @generated SignedSource<<6a9c1c9df67688ba0211f6d5b495021c>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type HomeContainerQuotesQueryVariables = {
-    after?: string | null | undefined;
-    first?: number | null | undefined;
+export type HomeContainerQuotesQuery$variables = {
+  after?: string | null;
+  first?: number | null;
 };
-export type HomeContainerQuotesQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
+export type HomeContainerQuotesQueryVariables = HomeContainerQuotesQuery$variables;
+export type HomeContainerQuotesQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
+export type HomeContainerQuotesQueryResponse = HomeContainerQuotesQuery$data;
 export type HomeContainerQuotesQuery = {
-    readonly response: HomeContainerQuotesQueryResponse;
-    readonly variables: HomeContainerQuotesQueryVariables;
+  variables: HomeContainerQuotesQueryVariables;
+  response: HomeContainerQuotesQuery$data;
 };
-
-
-
-/*
-query HomeContainerQuotesQuery(
-  $after: String
-  $first: Int
-) {
-  ...HomeContainer_quotes
-}
-
-fragment HomeContainer_quotes on Query {
-  quotes(first: $first, after: $after) {
-    totalCount
-    edges {
-      node {
-        ...QuotesList_quotes
-        id
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      startCursor
-      endCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }
-}
-
-fragment QuoteCard_quote on Quote {
-  _id
-  text
-  author {
-    id
-    firstName
-    lastName
-  }
-}
-
-fragment QuotesList_quotes on Quote {
-  id
-  ...QuoteCard_quote
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -272,5 +233,7 @@ return {
   }
 };
 })();
-(node as any).hash = '27cae3ca48a8efae7e72a578dca9d3aa';
+
+(node as any).hash = "27cae3ca48a8efae7e72a578dca9d3aa";
+
 export default node;

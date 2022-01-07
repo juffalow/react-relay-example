@@ -1,75 +1,37 @@
+/**
+ * @generated SignedSource<<9f13ef861c2352ee04e88a1ad28b62b8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type AuthorsOrderField = "CREATED_AT" | "ID" | "%future added value";
+export type AuthorsOrderField = "ID" | "CREATED_AT" | "%future added value";
 export type Direction = "ASC" | "DESC" | "%future added value";
 export type AuthorsOrder = {
-    field: AuthorsOrderField;
-    direction: Direction;
+  field: AuthorsOrderField;
+  direction: Direction;
 };
-export type AuthorsContainerQueryVariables = {
-    first?: number | null | undefined;
-    after?: string | null | undefined;
-    firstName?: string | null | undefined;
-    lastName?: string | null | undefined;
-    orderBy?: Array<AuthorsOrder | null> | null | undefined;
+export type AuthorsContainerQuery$variables = {
+  first?: number | null;
+  after?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  orderBy?: ReadonlyArray<AuthorsOrder | null> | null;
 };
-export type AuthorsContainerQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"AuthorsContainer_authors">;
+export type AuthorsContainerQueryVariables = AuthorsContainerQuery$variables;
+export type AuthorsContainerQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"AuthorsContainer_authors">;
 };
+export type AuthorsContainerQueryResponse = AuthorsContainerQuery$data;
 export type AuthorsContainerQuery = {
-    readonly response: AuthorsContainerQueryResponse;
-    readonly variables: AuthorsContainerQueryVariables;
+  variables: AuthorsContainerQueryVariables;
+  response: AuthorsContainerQuery$data;
 };
-
-
-
-/*
-query AuthorsContainerQuery(
-  $first: Int
-  $after: String
-  $firstName: String
-  $lastName: String
-  $orderBy: [AuthorsOrder]
-) {
-  ...AuthorsContainer_authors
-}
-
-fragment AuthorRow_author on Author {
-  _id
-  firstName
-  lastName
-}
-
-fragment AuthorsContainer_authors on Query {
-  authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy) {
-    totalCount
-    edges {
-      node {
-        ...AuthorsTable_authors
-        id
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      startCursor
-      endCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }
-}
-
-fragment AuthorsTable_authors on Author {
-  id
-  ...AuthorRow_author
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -304,5 +266,7 @@ return {
   }
 };
 })();
-(node as any).hash = '840d568f31141a94fd2d1f62af3e8bff';
+
+(node as any).hash = "840d568f31141a94fd2d1f62af3e8bff";
+
 export default node;

@@ -1,22 +1,25 @@
+/**
+ * @generated SignedSource<<9692f24276b271607c17b478be7f6351>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type AuthorsTable_authors = ReadonlyArray<{
-    readonly id: string;
-    readonly " $fragmentRefs": FragmentRefs<"AuthorRow_author">;
-    readonly " $refType": "AuthorsTable_authors";
+export type AuthorsTable_authors$data = ReadonlyArray<{
+  readonly id: string;
+  readonly " $fragmentSpreads": FragmentRefs<"AuthorRow_author">;
+  readonly " $fragmentType": "AuthorsTable_authors";
 }>;
-export type AuthorsTable_authors$data = AuthorsTable_authors;
+export type AuthorsTable_authors = AuthorsTable_authors$data;
 export type AuthorsTable_authors$key = ReadonlyArray<{
-    readonly " $data"?: AuthorsTable_authors$data | undefined;
-    readonly " $fragmentRefs": FragmentRefs<"AuthorsTable_authors">;
+  readonly " $data"?: AuthorsTable_authors$data;
+  readonly " $fragmentSpreads": FragmentRefs<"AuthorsTable_authors">;
 }>;
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -42,5 +45,7 @@ const node: ReaderFragment = {
   "type": "Author",
   "abstractKey": null
 };
-(node as any).hash = '05979f8c8b521d8dcb200fc789bd5c85';
+
+(node as any).hash = "05979f8c8b521d8dcb200fc789bd5c85";
+
 export default node;

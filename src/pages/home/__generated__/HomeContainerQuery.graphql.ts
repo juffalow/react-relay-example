@@ -1,67 +1,28 @@
+/**
+ * @generated SignedSource<<72e46929bbb101d19bcd5b1542d62478>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type HomeContainerQueryVariables = {
-    first?: number | null | undefined;
-    after?: string | null | undefined;
+export type HomeContainerQuery$variables = {
+  first?: number | null;
+  after?: string | null;
 };
-export type HomeContainerQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
+export type HomeContainerQueryVariables = HomeContainerQuery$variables;
+export type HomeContainerQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
+export type HomeContainerQueryResponse = HomeContainerQuery$data;
 export type HomeContainerQuery = {
-    readonly response: HomeContainerQueryResponse;
-    readonly variables: HomeContainerQueryVariables;
+  variables: HomeContainerQueryVariables;
+  response: HomeContainerQuery$data;
 };
-
-
-
-/*
-query HomeContainerQuery(
-  $first: Int
-  $after: String
-) {
-  ...HomeContainer_quotes
-}
-
-fragment HomeContainer_quotes on Query {
-  quotes(first: $first, after: $after) {
-    totalCount
-    edges {
-      node {
-        ...QuotesList_quotes
-        id
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      startCursor
-      endCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }
-}
-
-fragment QuoteCard_quote on Quote {
-  _id
-  text
-  author {
-    id
-    firstName
-    lastName
-  }
-}
-
-fragment QuotesList_quotes on Quote {
-  id
-  ...QuoteCard_quote
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -276,5 +237,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'bc172e859d26e5d66330beaabb51b14d';
+
+(node as any).hash = "bc172e859d26e5d66330beaabb51b14d";
+
 export default node;

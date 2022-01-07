@@ -1,27 +1,30 @@
+/**
+ * @generated SignedSource<<f2135600a8ae7ebe3a806bb8ccc83823>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type QuoteCard_quote = {
-    readonly _id: string;
-    readonly text: string;
-    readonly author: {
-        readonly id: string;
-        readonly firstName: string;
-        readonly lastName: string;
-    } | null;
-    readonly " $refType": "QuoteCard_quote";
+export type QuoteCard_quote$data = {
+  readonly _id: string;
+  readonly text: string;
+  readonly author: {
+    readonly id: string;
+    readonly firstName: string;
+    readonly lastName: string;
+  } | null;
+  readonly " $fragmentType": "QuoteCard_quote";
 };
-export type QuoteCard_quote$data = QuoteCard_quote;
+export type QuoteCard_quote = QuoteCard_quote$data;
 export type QuoteCard_quote$key = {
-    readonly " $data"?: QuoteCard_quote$data | undefined;
-    readonly " $fragmentRefs": FragmentRefs<"QuoteCard_quote">;
+  readonly " $data"?: QuoteCard_quote$data;
+  readonly " $fragmentSpreads": FragmentRefs<"QuoteCard_quote">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -79,5 +82,7 @@ const node: ReaderFragment = {
   "type": "Quote",
   "abstractKey": null
 };
-(node as any).hash = 'f2187e84ec570b51588b4702373bfc1b';
+
+(node as any).hash = "f2187e84ec570b51588b4702373bfc1b";
+
 export default node;

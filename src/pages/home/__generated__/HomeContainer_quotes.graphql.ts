@@ -1,34 +1,37 @@
+/**
+ * @generated SignedSource<<c6ed9eee8adb125a13a62b0cfb352b22>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import HomeContainerQuotesQuery from "./HomeContainerQuotesQuery.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type HomeContainer_quotes = {
-    readonly quotes: {
-        readonly totalCount: number;
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly " $fragmentRefs": FragmentRefs<"QuotesList_quotes">;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly startCursor: string | null;
-            readonly endCursor: string | null;
-            readonly hasNextPage: boolean | null;
-            readonly hasPreviousPage: boolean | null;
-        };
-    } | null;
-    readonly " $refType": "HomeContainer_quotes";
+export type HomeContainer_quotes$data = {
+  readonly quotes: {
+    readonly totalCount: number;
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly " $fragmentSpreads": FragmentRefs<"QuotesList_quotes">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly startCursor: string | null;
+      readonly endCursor: string | null;
+      readonly hasNextPage: boolean | null;
+      readonly hasPreviousPage: boolean | null;
+    };
+  } | null;
+  readonly " $fragmentType": "HomeContainer_quotes";
 };
-export type HomeContainer_quotes$data = HomeContainer_quotes;
+export type HomeContainer_quotes = HomeContainer_quotes$data;
 export type HomeContainer_quotes$key = {
-    readonly " $data"?: HomeContainer_quotes$data | undefined;
-    readonly " $fragmentRefs": FragmentRefs<"HomeContainer_quotes">;
+  readonly " $data"?: HomeContainer_quotes$data;
+  readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -65,7 +68,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": HomeContainerQuotesQuery
+      "operation": require('./HomeContainerQuotesQuery.graphql')
     }
   },
   "name": "HomeContainer_quotes",
@@ -102,16 +105,16 @@ return {
               "plural": false,
               "selections": [
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "QuotesList_quotes"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "QuotesList_quotes"
                 }
               ],
               "storageKey": null
@@ -173,5 +176,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '27cae3ca48a8efae7e72a578dca9d3aa';
+
+(node as any).hash = "27cae3ca48a8efae7e72a578dca9d3aa";
+
 export default node;
