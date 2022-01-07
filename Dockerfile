@@ -1,4 +1,4 @@
-FROM node:14.15.1-alpine as build
+FROM node:16-alpine as build
 
 RUN mkdir /home/node/react-relay-example/ && chown -R node:node /home/node/react-relay-example
 WORKDIR /home/node/react-relay-example
