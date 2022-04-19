@@ -1,5 +1,5 @@
 import { RelayEnvironmentProvider } from 'react-relay';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import ForkMe from './components/ForkMe';
 import Footer from './components/Footer';
@@ -9,17 +9,19 @@ import environment from './environment';
 
 const App = () => (
   <RelayEnvironmentProvider environment={environment}>
-    <Router>
+    <BrowserRouter>
       <>
         <Menu />
         <ForkMe />
         <main role="main" className="flex-shrink-0" style={{ marginTop: 25, marginBottom: 81 }}>
-          <Route path="/authors" component={Authors} />
-          <Route path="/" component={Home} exact />
+          <Routes>
+            <Route path="/authors" element={<Authors />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </main>
         <Footer />
       </>
-    </Router>
+      </BrowserRouter>
   </RelayEnvironmentProvider>
 );
 
