@@ -6,10 +6,9 @@ import {
 } from 'relay-runtime';
 import { RequestParameters } from 'relay-runtime/lib/util/RelayConcreteNode';
 import { Variables } from 'relay-runtime/lib/util/RelayRuntimeTypes';
-import config from './config';
 
 async function fetchGraphQL(params: RequestParameters, variables: Variables) {
-  const response = await fetch(config.graphql, {
+  const response = await fetch(`${process.env.REACT_APP_GRAPHQL_URL}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
