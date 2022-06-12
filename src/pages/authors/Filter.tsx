@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 interface Props {
   onUpdate: (values: any) => void;
@@ -51,38 +53,53 @@ const Filter: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Form inline>
-      <FormGroup controlId="firstName">
-        <Form.Label>First name:</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder=""
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
-      </FormGroup>
-      <FormGroup controlId="lastName">
-        <Form.Label>Last name:</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder=""
-          value={lastName}
-          onChange={handleLastNameChange}
-        />
-      </FormGroup>
-      <FormGroup controlId="orderField">
-        <Form.Label>Order by:</Form.Label>
-        <Form.Control as="select" placeholder="field" value={orderField} onChange={handleOrderFieldChange}>
-          <option value="ID">ID</option>
-          <option value="CREATED_AT">CREATED_AT</option>
-        </Form.Control>
-      </FormGroup>
-      <FormGroup controlId="orderDirection">
-        <Form.Control as="select" placeholder="direction" value={orderDirection} onChange={handleOrderDirectionChange}>
-          <option value="ASC">ASC</option>
-          <option value="DESC">DESC</option>
-        </Form.Control>
-      </FormGroup>
+    <Form>
+      <Row>
+        <Col>
+          <FormGroup controlId="firstName">
+            <Form.Label>First name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              value={firstName}
+              onChange={handleFirstNameChange}
+            />
+          </FormGroup>
+        </Col>
+        <Col>
+          <FormGroup controlId="lastName">
+            <Form.Label>Last name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              value={lastName}
+              onChange={handleLastNameChange}
+            />
+          </FormGroup>
+        </Col>
+        <Col>
+          <Row>
+            <Col>
+              <FormGroup controlId="orderField">
+                <Form.Label>Order by:</Form.Label>
+                <Form.Control as="select" placeholder="field" value={orderField} onChange={handleOrderFieldChange}>
+                  <option value="ID">ID</option>
+                  <option value="CREATED_AT">CREATED_AT</option>
+                </Form.Control>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup controlId="orderDirection">
+                <Form.Label>Sort:</Form.Label>
+                <Form.Control as="select" placeholder="direction" value={orderDirection} onChange={handleOrderDirectionChange}>
+                  <option value="ASC">ASC</option>
+                  <option value="DESC">DESC</option>
+                </Form.Control>
+              </FormGroup>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </Form>
   );
 };

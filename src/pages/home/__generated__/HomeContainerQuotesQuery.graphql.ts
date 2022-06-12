@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6a9c1c9df67688ba0211f6d5b495021c>>
+ * @generated SignedSource<<34636444a0e496d6796e9214e6002b73>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,14 +14,12 @@ export type HomeContainerQuotesQuery$variables = {
   after?: string | null;
   first?: number | null;
 };
-export type HomeContainerQuotesQueryVariables = HomeContainerQuotesQuery$variables;
 export type HomeContainerQuotesQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
-export type HomeContainerQuotesQueryResponse = HomeContainerQuotesQuery$data;
 export type HomeContainerQuotesQuery = {
-  variables: HomeContainerQuotesQueryVariables;
   response: HomeContainerQuotesQuery$data;
+  variables: HomeContainerQuotesQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){

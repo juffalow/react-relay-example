@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cf184652491d5b26a69acead15a84b73>>
+ * @generated SignedSource<<5978ad3c26aaa757eca4008ca7be9d7a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,6 @@ export type QuotesList_quotes$data = ReadonlyArray<{
   readonly " $fragmentSpreads": FragmentRefs<"QuoteCard_quote">;
   readonly " $fragmentType": "QuotesList_quotes";
 }>;
-export type QuotesList_quotes = QuotesList_quotes$data;
 export type QuotesList_quotes$key = ReadonlyArray<{
   readonly " $data"?: QuotesList_quotes$data;
   readonly " $fragmentSpreads": FragmentRefs<"QuotesList_quotes">;

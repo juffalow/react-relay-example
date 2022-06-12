@@ -8,7 +8,7 @@ import { RequestParameters } from 'relay-runtime/lib/util/RelayConcreteNode';
 import { Variables } from 'relay-runtime/lib/util/RelayRuntimeTypes';
 
 async function fetchGraphQL(params: RequestParameters, variables: Variables) {
-  const response = await fetch(`${process.env.REACT_APP_GRAPHQL_URL}`, {
+  const response = await fetch(`https://graphql.juffalow.com/graphql`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

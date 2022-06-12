@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5ac6fe63ec8ae321c847e8a828a65811>>
+ * @generated SignedSource<<0bcfb78e894595c8f7fa4420ca14c9fb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,22 +12,21 @@ import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsContainer_authors$data = {
   readonly authors: {
-    readonly totalCount: number;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"AuthorsTable_authors">;
       } | null;
     } | null> | null;
     readonly pageInfo: {
-      readonly startCursor: string | null;
       readonly endCursor: string | null;
       readonly hasNextPage: boolean | null;
       readonly hasPreviousPage: boolean | null;
+      readonly startCursor: string | null;
     };
+    readonly totalCount: number;
   } | null;
   readonly " $fragmentType": "AuthorsContainer_authors";
 };
-export type AuthorsContainer_authors = AuthorsContainer_authors$data;
 export type AuthorsContainer_authors$key = {
   readonly " $data"?: AuthorsContainer_authors$data;
   readonly " $fragmentSpreads": FragmentRefs<"AuthorsContainer_authors">;

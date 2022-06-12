@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c6ed9eee8adb125a13a62b0cfb352b22>>
+ * @generated SignedSource<<ec51eb23c3734642962ed1804f2a0f78>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,22 +12,21 @@ import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainer_quotes$data = {
   readonly quotes: {
-    readonly totalCount: number;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"QuotesList_quotes">;
       } | null;
     } | null> | null;
     readonly pageInfo: {
-      readonly startCursor: string | null;
       readonly endCursor: string | null;
       readonly hasNextPage: boolean | null;
       readonly hasPreviousPage: boolean | null;
+      readonly startCursor: string | null;
     };
+    readonly totalCount: number;
   } | null;
   readonly " $fragmentType": "HomeContainer_quotes";
 };
-export type HomeContainer_quotes = HomeContainer_quotes$data;
 export type HomeContainer_quotes$key = {
   readonly " $data"?: HomeContainer_quotes$data;
   readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;

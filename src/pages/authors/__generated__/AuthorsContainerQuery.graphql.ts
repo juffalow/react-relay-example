@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9f13ef861c2352ee04e88a1ad28b62b8>>
+ * @generated SignedSource<<d94025fa5152ce93c0aed3a18f0c2152>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,27 +10,25 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type AuthorsOrderField = "ID" | "CREATED_AT" | "%future added value";
+export type AuthorsOrderField = "CREATED_AT" | "ID" | "%future added value";
 export type Direction = "ASC" | "DESC" | "%future added value";
 export type AuthorsOrder = {
-  field: AuthorsOrderField;
   direction: Direction;
+  field: AuthorsOrderField;
 };
 export type AuthorsContainerQuery$variables = {
-  first?: number | null;
   after?: string | null;
+  first?: number | null;
   firstName?: string | null;
   lastName?: string | null;
   orderBy?: ReadonlyArray<AuthorsOrder | null> | null;
 };
-export type AuthorsContainerQueryVariables = AuthorsContainerQuery$variables;
 export type AuthorsContainerQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"AuthorsContainer_authors">;
 };
-export type AuthorsContainerQueryResponse = AuthorsContainerQuery$data;
 export type AuthorsContainerQuery = {
-  variables: AuthorsContainerQueryVariables;
   response: AuthorsContainerQuery$data;
+  variables: AuthorsContainerQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){

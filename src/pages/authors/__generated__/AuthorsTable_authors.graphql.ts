@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9692f24276b271607c17b478be7f6351>>
+ * @generated SignedSource<<1d1abdecf816fc7ee2ab860d2e0da5ed>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,6 @@ export type AuthorsTable_authors$data = ReadonlyArray<{
   readonly " $fragmentSpreads": FragmentRefs<"AuthorRow_author">;
   readonly " $fragmentType": "AuthorsTable_authors";
 }>;
-export type AuthorsTable_authors = AuthorsTable_authors$data;
 export type AuthorsTable_authors$key = ReadonlyArray<{
   readonly " $data"?: AuthorsTable_authors$data;
   readonly " $fragmentSpreads": FragmentRefs<"AuthorsTable_authors">;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<72e46929bbb101d19bcd5b1542d62478>>
+ * @generated SignedSource<<ac2de8e01655e7b7f3eeffbfabf6eb58>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,17 +11,15 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainerQuery$variables = {
-  first?: number | null;
   after?: string | null;
+  first?: number | null;
 };
-export type HomeContainerQueryVariables = HomeContainerQuery$variables;
 export type HomeContainerQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
-export type HomeContainerQueryResponse = HomeContainerQuery$data;
 export type HomeContainerQuery = {
-  variables: HomeContainerQueryVariables;
   response: HomeContainerQuery$data;
+  variables: HomeContainerQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){

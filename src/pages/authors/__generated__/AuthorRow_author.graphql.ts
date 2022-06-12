@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<47dd10d3f999f02db4a1531a2517079c>>
+ * @generated SignedSource<<51aa0ab37d9f0758894247510c247cb8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,6 @@ export type AuthorRow_author$data = {
   readonly lastName: string;
   readonly " $fragmentType": "AuthorRow_author";
 };
-export type AuthorRow_author = AuthorRow_author$data;
 export type AuthorRow_author$key = {
   readonly " $data"?: AuthorRow_author$data;
   readonly " $fragmentSpreads": FragmentRefs<"AuthorRow_author">;

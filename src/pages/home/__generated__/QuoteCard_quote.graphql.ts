@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f2135600a8ae7ebe3a806bb8ccc83823>>
+ * @generated SignedSource<<9149708c1c5708ef708249b82f9b8776>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,15 +12,14 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type QuoteCard_quote$data = {
   readonly _id: string;
-  readonly text: string;
   readonly author: {
-    readonly id: string;
     readonly firstName: string;
+    readonly id: string;
     readonly lastName: string;
   } | null;
+  readonly text: string;
   readonly " $fragmentType": "QuoteCard_quote";
 };
-export type QuoteCard_quote = QuoteCard_quote$data;
 export type QuoteCard_quote$key = {
   readonly " $data"?: QuoteCard_quote$data;
   readonly " $fragmentSpreads": FragmentRefs<"QuoteCard_quote">;

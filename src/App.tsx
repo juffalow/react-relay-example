@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Authors from './pages/Authors';
 import environment from './environment';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
   <RelayEnvironmentProvider environment={environment}>
