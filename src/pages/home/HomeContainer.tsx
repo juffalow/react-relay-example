@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { usePaginationFragment, useLazyLoadQuery } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import QuotesList from './QuotesList';
+import QuotesLoader from './QuotesLoader';
 import { HomeContainer_quotes$key } from './__generated__/HomeContainer_quotes.graphql';
 import { HomeContainerQuery } from './__generated__/HomeContainerQuery.graphql';
 
@@ -59,13 +60,13 @@ const HomeContainer = () => {
       query HomeContainerQuery($first: Int, $after: String) {
           ...HomeContainer_quotes
       }`, {
-      first: 10,
+      first: 9,
       after: null,
     },
   );
   
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<QuotesLoader />}>
       <Quotes query={query} />
     </Suspense>
   );

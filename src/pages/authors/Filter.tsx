@@ -84,6 +84,8 @@ const Filter: React.FC<Props> = (props: Props) => {
                 <Form.Label>Order by:</Form.Label>
                 <Form.Control as="select" placeholder="field" value={orderField} onChange={handleOrderFieldChange}>
                   <option value="ID">ID</option>
+                  <option value="FIRST_NAME">FIRST_NAME</option>
+                  <option value="LAST_NAME">LAST_NAME</option>
                   <option value="CREATED_AT">CREATED_AT</option>
                 </Form.Control>
               </FormGroup>

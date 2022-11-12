@@ -1,9 +1,9 @@
 # source: http://localhost:3010/graphql
-# timestamp: Sat Nov 06 2021 12:16:11 GMT+0100 (Central European Standard Time)
+# timestamp: Sat Nov 12 2022 12:05:52 GMT+0100 (Central European Standard Time)
 
-"""Exposes a URL that specifies the behaviour of this scalar."""
+"""Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
+  """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
 
@@ -57,6 +57,8 @@ input AuthorsOrder {
 
 enum AuthorsOrderField {
   ID
+  FIRST_NAME
+  LAST_NAME
   CREATED_AT
 }
 

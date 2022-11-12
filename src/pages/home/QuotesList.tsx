@@ -20,7 +20,7 @@ const QuotesList = (props: Props) => {
   );
 
   return (
-    <Row>
+    <Row className="mt-4">
       {
         quotes.map((quote: Quote) => (
           <Col key={quote.id} md={4} style={{ marginBottom: 20 }}>

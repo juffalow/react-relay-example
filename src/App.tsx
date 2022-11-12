@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Authors from './pages/Authors';
 import environment from './environment';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 const App = () => (
   <RelayEnvironmentProvider environment={environment}>
@@ -14,7 +15,7 @@ const App = () => (
       <>
         <Menu />
         <ForkMe />
-        <main role="main" className="flex-shrink-0" style={{ marginTop: 25, marginBottom: 81 }}>
+        <main role="main" className="flex-shrink-0 main-container" style={{ marginTop: 25, marginBottom: 25 }}>
           <Routes>
             <Route path="/authors" element={<Authors />} />
             <Route path="/" element={<Home />} />
