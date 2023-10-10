@@ -1,0 +1,10 @@
+services:
+  frontend:
+    image: node:18-alpine
+    working_dir: /home/node
+    command: sh -c "yarn install && yarn start"
+    restart: unless-stopped
+    volumes:
+      - "./:/home/node"
+    ports:
+      - 3000:3000
