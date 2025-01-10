@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 interface Props {
   title: string;
@@ -9,11 +8,9 @@ interface Props {
 
 const SEO = ({ title, description, children }: Props) => (
   <>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>{title} | juffalow.com</title>
-      <meta name="description" content={description} />
-    </Helmet>
+    <meta charSet="utf-8" />
+    <title>{`${title} | juffalow.com`}</title>
+    <meta name="description" content={description} />
     {children}
   </>
 );
