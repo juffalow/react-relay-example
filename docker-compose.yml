@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: node:18-alpine
+    image: node:22-alpine
     working_dir: /home/node
     command: sh -c "yarn install && yarn start"
     restart: unless-stopped
