@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: yarn
     - name: Build
-      with:
+      env:
         REACT_APP_GRAPHQL_URL: ${{ secrets.REACT_APP_GRAPHQL_URL }}
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
       run: yarn build
