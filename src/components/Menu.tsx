@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -18,4 +18,4 @@ const Menu = () => (
   </Navbar>
 );
 
-export default React.memo(Menu);
+export default memo(Menu);

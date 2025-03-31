@@ -1,4 +1,5 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
+import type { FunctionComponent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,7 +13,7 @@ interface Props {
   values: any;
 }
 
-const Authors: React.FC<Props> = (props: Props) => {
+const Authors: FunctionComponent<Props> = (props: Props) => {
   const values = props.values;
   const { data, loadNext, hasNext, refetch } = usePaginationFragment<any, any>(
     graphql`

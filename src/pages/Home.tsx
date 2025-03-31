@@ -1,11 +1,11 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SEO from '../components/SEO';
 import HomeContainer from './home/HomeContainer';
 
-const Home: React.FC = () => (
+const Home: FunctionComponent = () => (
   <SEO title="Quotes" description="Example project how to use React, Relay and TypeScript">
     <Container>
       <Row>

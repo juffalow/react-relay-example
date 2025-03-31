@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { FunctionComponent } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Row from 'react-bootstrap/Row';
@@ -8,7 +9,7 @@ interface Props {
   onUpdate: (values: any) => void;
 }
 
-const Filter: React.FC<Props> = (props: Props) => {
+const Filter: FunctionComponent<Props> = (props: Props) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [orderField, setOrderField] = useState('ID');

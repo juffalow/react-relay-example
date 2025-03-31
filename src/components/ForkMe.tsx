@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 
 const ForkMe = () => (
   <a href="https://github.com/juffalow/react-relay-example">
@@ -13,4 +13,4 @@ const ForkMe = () => (
   </a>
 );
 
-export default React.memo(ForkMe);
+export default memo(ForkMe);

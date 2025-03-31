@@ -1,4 +1,5 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
+import type { FunctionComponent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +14,7 @@ interface Props {
   query: any;
 }
 
-const Quotes: React.FC<Props> = (props: Props) => {
+const Quotes: FunctionComponent<Props> = (props: Props) => {
   const { data, loadNext, hasNext } = usePaginationFragment<HomeContainerQuery, HomeContainer_quotes$key>(
     graphql`
       fragment HomeContainer_quotes on Query

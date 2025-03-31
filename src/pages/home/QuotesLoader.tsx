@@ -10,8 +10,8 @@ interface Props {
 const QuotesLoader = (props: Props) => (
   <Row className="mt-4">
     {
-      Array.apply(null, Array(props.count)).map(() => (
-        <Col md={4} style={{ marginBottom: 20 }}>
+      Array.apply(null, Array(props.count)).map((_, index) => (
+        <Col key={index} md={4} style={{ marginBottom: 20 }}>
           <Card className="bar-loader" style={{ minHeight: 125 }} />
         </Col>
       ))
