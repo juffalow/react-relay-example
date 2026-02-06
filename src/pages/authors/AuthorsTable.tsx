@@ -5,7 +5,7 @@ import AuthorRow from './AuthorRow';
 import { Author } from '../../types/Author';
 
 interface Props {
-  authors: Array<Author>;
+  authors: Author[];
 }
 
 const AuthorsTable = (props: Props) => {

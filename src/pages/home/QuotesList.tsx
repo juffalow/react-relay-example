@@ -6,7 +6,7 @@ import QuoteCard from './QuoteCard';
 import { Quote } from '../../types/Quote';
 
 interface Props {
-  quotes: Array<Quote>;
+  quotes: Quote[];
 }
 
 const QuotesList = (props: Props) => {

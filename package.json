@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "relay": "relay-compiler $@",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,17 +39,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@eslint/js": "^9.39.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/react-relay": "^18.2.1",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "eslint": "^8.21.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react": "^7.37.5",
     "graphql": "^16.10.0",
     "relay-compiler": "^20.1.1",
     "relay-compiler-language-typescript": "^15.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.54.0"
   },
   "relay": {
     "src": "./src/",
