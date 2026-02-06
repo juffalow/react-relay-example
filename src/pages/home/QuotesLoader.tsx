@@ -9,13 +9,11 @@ interface Props {
 
 const QuotesLoader = ({ count = 9 }: Props) => (
   <Row className="mt-4">
-    {
-      [...Array(count)].map((_, index) => (
-        <Col key={index} md={4} style={{ marginBottom: 20 }}>
-          <Card className="bar-loader" style={{ minHeight: 125 }} />
-        </Col>
-      ))
-    }
+    {[...Array(count)].map((_, index) => (
+      <Col key={index} md={4} style={{ marginBottom: 20 }}>
+        <Card className="bar-loader" style={{ minHeight: 125 }} />
+      </Col>
+    ))}
   </Row>
 );
 

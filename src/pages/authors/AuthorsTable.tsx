@@ -14,7 +14,8 @@ const AuthorsTable = (props: Props) => {
       fragment AuthorsTable_authors on Author @relay(plural: true) {
         id
         ...AuthorRow_author
-      }`,
+      }
+    `,
     props.authors
   );
 
@@ -28,16 +29,14 @@ const AuthorsTable = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {
-          authors.map((author: Author) => (
-            <tr key={author.id}>
-              <AuthorRow author={author} />
-            </tr>
-          ))
-        }
+        {authors.map((author: Author) => (
+          <tr key={author.id}>
+            <AuthorRow author={author} />
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
-}
+};
 
 export default AuthorsTable;

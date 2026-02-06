@@ -20,7 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "relay": "relay-compiler $@",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prettier:check": "prettier --check ./src",
+    "prettier:write": "prettier --write ./src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +49,7 @@
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.5",
     "graphql": "^16.10.0",
+    "prettier": "^3.8.1",
     "relay-compiler": "^20.1.1",
     "relay-compiler-language-typescript": "^15.0.0",
     "typescript": "^5.7.3",

@@ -23,7 +23,7 @@ const App = () => (
         </main>
         <Footer />
       </>
-      </BrowserRouter>
+    </BrowserRouter>
   </RelayEnvironmentProvider>
 );
 

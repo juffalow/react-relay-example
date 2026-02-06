@@ -17,14 +17,10 @@ interface Props {
 const Quotes: FunctionComponent<Props> = (props: Props) => {
   const { data, loadNext, hasNext } = usePaginationFragment<HomeContainerQuery, HomeContainer_quotes$key>(
     graphql`
-      fragment HomeContainer_quotes on Query
-      @refetchable(queryName: "HomeContainerQuotesQuery") {
-        quotes (
-          first: $first
-          after: $after
-        ) @connection(key: "QuotesList_quotes") {
+      fragment HomeContainer_quotes on Query @refetchable(queryName: "HomeContainerQuotesQuery") {
+        quotes(first: $first, after: $after) @connection(key: "QuotesList_quotes") {
           totalCount
-          edges  {
+          edges {
             node {
               ...QuotesList_quotes
             }
@@ -36,41 +32,39 @@ const Quotes: FunctionComponent<Props> = (props: Props) => {
             hasPreviousPage
           }
         }
-      }`,
+      }
+    `,
     props.query
   );
-  
+
   return (
     <>
       <QuotesList quotes={(data as any).quotes.edges.map((edge: any) => edge.node)} />
       <Row className="mt-4 text-center">
-        <Col>
-          {
-            hasNext &&
-            <Button onClick={() => loadNext(9)}>Load more</Button>
-          }
-        </Col>
+        <Col>{hasNext && <Button onClick={() => loadNext(9)}>Load more</Button>}</Col>
       </Row>
     </>
   );
-}
+};
 
 const HomeContainer = () => {
   const query = useLazyLoadQuery<any>(
     graphql`
       query HomeContainerQuery($first: Int, $after: String) {
-          ...HomeContainer_quotes
-      }`, {
+        ...HomeContainer_quotes
+      }
+    `,
+    {
       first: 9,
       after: null,
-    },
+    }
   );
-  
+
   return (
     <Suspense fallback={<QuotesLoader />}>
       <Quotes query={query} />
     </Suspense>
   );
-}
+};
 
 export default HomeContainer;

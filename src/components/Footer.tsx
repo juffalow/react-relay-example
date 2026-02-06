@@ -8,7 +8,11 @@ const Footer = () => (
     <Container fluid={true}>
       <Row>
         <Col>
-          Created with <i className="fas fa-heart" style={{ color: 'red' }}></i> by <a href="https://juffalow.com" style={{ color: '#fff', textDecoration: 'none' }}>Matej <span style={{ color: 'red' }}>&apos;juffalow&apos;</span> Jellus</a> | 2019 - 2025
+          Created with <i className="fas fa-heart" style={{ color: 'red' }}></i> by{' '}
+          <a href="https://juffalow.com" style={{ color: '#fff', textDecoration: 'none' }}>
+            Matej <span style={{ color: 'red' }}>&apos;juffalow&apos;</span> Jellus
+          </a>{' '}
+          | 2019 - 2025
         </Col>
       </Row>
     </Container>

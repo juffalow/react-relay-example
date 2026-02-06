@@ -17,17 +17,11 @@ const Authors: FunctionComponent<Props> = (props: Props) => {
   const values = props.values;
   const { data, loadNext, hasNext, refetch } = usePaginationFragment<any, any>(
     graphql`
-      fragment AuthorsContainer_authors on Query
-      @refetchable(queryName: "AuthorsContainerAuthorsQuery") {
-        authors (
-          first: $first
-          after: $after
-          firstName: $firstName
-          lastName: $lastName
-          orderBy: $orderBy
-        ) @connection(key: "AuthorsTable_authors") {
+      fragment AuthorsContainer_authors on Query @refetchable(queryName: "AuthorsContainerAuthorsQuery") {
+        authors(first: $first, after: $after, firstName: $firstName, lastName: $lastName, orderBy: $orderBy)
+          @connection(key: "AuthorsTable_authors") {
           totalCount
-          edges  {
+          edges {
             node {
               ...AuthorsTable_authors
             }
@@ -39,40 +33,45 @@ const Authors: FunctionComponent<Props> = (props: Props) => {
             hasPreviousPage
           }
         }
-      }`,
+      }
+    `,
     props.query
   );
 
   useEffect(() => {
     refetch(values);
-  }, [ values ]);
-  
+  }, [values]);
+
   return (
     <>
       <AuthorsTable authors={data.authors.edges.map((edge: any) => edge.node)} />
       <Row className="mt-4 text-center">
-        <Col>
-          {
-            hasNext &&
-            <Button onClick={() => loadNext(9)}>Load more</Button>
-          }
-        </Col>
+        <Col>{hasNext && <Button onClick={() => loadNext(9)}>Load more</Button>}</Col>
       </Row>
     </>
   );
-}
+};
 
 const AuthorsContainer = () => {
   const [values, setValues] = useState({});
   const query = useLazyLoadQuery<any>(
     graphql`
-      query AuthorsContainerQuery($first: Int, $after: String, $firstName: String, $lastName: String, $orderBy: [AuthorsOrder]) {
+      query AuthorsContainerQuery(
+        $first: Int
+        $after: String
+        $firstName: String
+        $lastName: String
+        $orderBy: [AuthorsOrder]
+      ) {
         ...AuthorsContainer_authors
-      }`, {
+      }
+    `,
+    {
       first: 10,
       after: null,
-    });
-  
+    }
+  );
+
   return (
     <>
       <Row className="mt-4 mb-4">
@@ -85,6 +84,6 @@ const AuthorsContainer = () => {
       </Suspense>
     </>
   );
-}
+};
 
 export default AuthorsContainer;

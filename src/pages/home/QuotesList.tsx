@@ -15,21 +15,20 @@ const QuotesList = (props: Props) => {
       fragment QuotesList_quotes on Quote @relay(plural: true) {
         id
         ...QuoteCard_quote
-      }`,
+      }
+    `,
     props.quotes
   );
 
   return (
     <Row className="mt-4">
-      {
-        quotes.map((quote: Quote) => (
-          <Col key={quote.id} md={4} style={{ marginBottom: 20 }}>
-            <QuoteCard quote={quote} />
-          </Col>
-        ))
-      }
+      {quotes.map((quote: Quote) => (
+        <Col key={quote.id} md={4} style={{ marginBottom: 20 }}>
+          <QuoteCard quote={quote} />
+        </Col>
+      ))}
     </Row>
   );
-}
+};
 
 export default QuotesList;

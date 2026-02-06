@@ -18,7 +18,8 @@ const QuoteCard = (props: Props) => {
           firstName
           lastName
         }
-      }`,
+      }
+    `,
     props.quote
   );
 
@@ -34,6 +35,6 @@ const QuoteCard = (props: Props) => {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default QuoteCard;

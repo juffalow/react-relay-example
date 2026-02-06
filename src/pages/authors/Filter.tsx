@@ -33,14 +33,14 @@ const Filter: FunctionComponent<Props> = (props: Props) => {
     const { value } = e.target;
 
     setOrderField(value);
-    update({ orderBy:[{ field: value, direction: orderDirection }] });
+    update({ orderBy: [{ field: value, direction: orderDirection }] });
   };
 
   const handleOrderDirectionChange = (e: any) => {
     const { value } = e.target;
 
     setOrderDirection(value);
-    update({ orderBy:[{ field: orderField, direction: value }] });
+    update({ orderBy: [{ field: orderField, direction: value }] });
   };
 
   const update = (values: any) => {
@@ -49,7 +49,8 @@ const Filter: FunctionComponent<Props> = (props: Props) => {
         firstName: firstName.length === 0 ? null : firstName,
         lastName: lastName.length === 0 ? null : lastName,
         orderBy: [{ field: orderField, direction: orderDirection }],
-      }, ...values
+      },
+      ...values,
     });
   };
 
@@ -59,23 +60,13 @@ const Filter: FunctionComponent<Props> = (props: Props) => {
         <Col>
           <FormGroup controlId="firstName">
             <Form.Label>First name:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={firstName}
-              onChange={handleFirstNameChange}
-            />
+            <Form.Control type="text" placeholder="" value={firstName} onChange={handleFirstNameChange} />
           </FormGroup>
         </Col>
         <Col>
           <FormGroup controlId="lastName">
             <Form.Label>Last name:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={lastName}
-              onChange={handleLastNameChange}
-            />
+            <Form.Control type="text" placeholder="" value={lastName} onChange={handleLastNameChange} />
           </FormGroup>
         </Col>
         <Col>
@@ -94,7 +85,12 @@ const Filter: FunctionComponent<Props> = (props: Props) => {
             <Col>
               <FormGroup controlId="orderDirection">
                 <Form.Label>Sort:</Form.Label>
-                <Form.Control as="select" placeholder="direction" value={orderDirection} onChange={handleOrderDirectionChange}>
+                <Form.Control
+                  as="select"
+                  placeholder="direction"
+                  value={orderDirection}
+                  onChange={handleOrderDirectionChange}
+                >
                   <option value="ASC">ASC</option>
                   <option value="DESC">DESC</option>
                 </Form.Control>

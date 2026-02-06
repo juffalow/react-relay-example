@@ -13,10 +13,10 @@ const AuthorRow = (props: Props) => {
         _id
         firstName
         lastName
-      }`,
+      }
+    `,
     props.author
   );
-
 
   return (
     <>
@@ -25,6 +25,6 @@ const AuthorRow = (props: Props) => {
       <td>{author.lastName}</td>
     </>
   );
-}
+};
 
 export default AuthorRow;
