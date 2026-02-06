@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9149708c1c5708ef708249b82f9b8776>>
+ * @generated SignedSource<<f3b62188cb828542a25ebfb50f010bb6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type QuoteCard_quote$data = {
   readonly _id: string;
@@ -16,7 +16,7 @@ export type QuoteCard_quote$data = {
     readonly firstName: string;
     readonly id: string;
     readonly lastName: string;
-  } | null;
+  } | null | undefined;
   readonly text: string;
   readonly " $fragmentType": "QuoteCard_quote";
 };

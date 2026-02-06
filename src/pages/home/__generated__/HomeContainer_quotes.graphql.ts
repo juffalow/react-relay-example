@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ec51eb23c3734642962ed1804f2a0f78>>
+ * @generated SignedSource<<f5510060fd9184dbef8600c60630d42e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,29 +8,31 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainer_quotes$data = {
   readonly quotes: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"QuotesList_quotes">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
-      readonly hasNextPage: boolean | null;
-      readonly hasPreviousPage: boolean | null;
-      readonly startCursor: string | null;
+      readonly endCursor: string | null | undefined;
+      readonly hasNextPage: boolean | null | undefined;
+      readonly hasPreviousPage: boolean | null | undefined;
+      readonly startCursor: string | null | undefined;
     };
     readonly totalCount: number;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "HomeContainer_quotes";
 };
 export type HomeContainer_quotes$key = {
   readonly " $data"?: HomeContainer_quotes$data;
   readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;
 };
+
+import HomeContainerQuotesQuery_graphql from './HomeContainerQuotesQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -67,7 +69,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./HomeContainerQuotesQuery.graphql')
+      "operation": HomeContainerQuotesQuery_graphql
     }
   },
   "name": "HomeContainer_quotes",

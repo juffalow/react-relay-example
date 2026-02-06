@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5978ad3c26aaa757eca4008ca7be9d7a>>
+ * @generated SignedSource<<c102b3b6e300e9a5ad976c14bb44714f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type QuotesList_quotes$data = ReadonlyArray<{
   readonly id: string;

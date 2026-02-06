@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<51aa0ab37d9f0758894247510c247cb8>>
+ * @generated SignedSource<<5caa48cfb3e79da765a3df4e33a4b1b8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type AuthorRow_author$data = {
   readonly _id: string;

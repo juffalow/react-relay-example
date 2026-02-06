@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0bcfb78e894595c8f7fa4420ca14c9fb>>
+ * @generated SignedSource<<9af8adf6058afe812d1fe31fb5fc7966>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,29 +8,31 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsContainer_authors$data = {
   readonly authors: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"AuthorsTable_authors">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly endCursor: string | null;
-      readonly hasNextPage: boolean | null;
-      readonly hasPreviousPage: boolean | null;
-      readonly startCursor: string | null;
+      readonly endCursor: string | null | undefined;
+      readonly hasNextPage: boolean | null | undefined;
+      readonly hasPreviousPage: boolean | null | undefined;
+      readonly startCursor: string | null | undefined;
     };
     readonly totalCount: number;
-  } | null;
+  } | null | undefined;
   readonly " $fragmentType": "AuthorsContainer_authors";
 };
 export type AuthorsContainer_authors$key = {
   readonly " $data"?: AuthorsContainer_authors$data;
   readonly " $fragmentSpreads": FragmentRefs<"AuthorsContainer_authors">;
 };
+
+import AuthorsContainerAuthorsQuery_graphql from './AuthorsContainerAuthorsQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -79,7 +81,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./AuthorsContainerAuthorsQuery.graphql')
+      "operation": AuthorsContainerAuthorsQuery_graphql
     }
   },
   "name": "AuthorsContainer_authors",

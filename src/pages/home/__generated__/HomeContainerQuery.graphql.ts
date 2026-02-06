@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ac2de8e01655e7b7f3eeffbfabf6eb58>>
+ * @generated SignedSource<<3df598f2fe975c5cca985a5cf78bcf3f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,11 +8,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest, Query } from 'relay-runtime';
+import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HomeContainerQuery$variables = {
-  after?: string | null;
-  first?: number | null;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
 };
 export type HomeContainerQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"HomeContainer_quotes">;

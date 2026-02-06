@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1d1abdecf816fc7ee2ab860d2e0da5ed>>
+ * @generated SignedSource<<b4b68c36a124b4f8ed3c2594757a5457>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type AuthorsTable_authors$data = ReadonlyArray<{
   readonly id: string;
